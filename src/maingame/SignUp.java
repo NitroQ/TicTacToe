@@ -33,12 +33,13 @@ public class SignUp {
 	Credentials id1;
 	public JFrame frame;
 	private JTextField txtUsername;
-	private JTextField textField_3;
+	private JTextField txtUsername_1;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JTextField textField_4;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_5;
 	
 
 	public static void main(String[] args) {
@@ -73,7 +74,7 @@ public class SignUp {
 	public void setStuff() {
 		
 		String fName = txtUsername.getText();
-		String uName = textField_3.getText();
+		String uName = txtUsername_1.getText();
 		String pass1 = String.valueOf(passwordField.getPassword());
 	
 		id1.setFname(fName);
@@ -84,7 +85,7 @@ public class SignUp {
 	
 	public boolean checkFields(){
 		String sName = txtUsername.getText();
-		String uName = textField_3.getText();
+		String uName = txtUsername_1.getText();
 		String mail = textField_4.getText();
 		String pass1 = String.valueOf(passwordField.getPassword());
 		String pass2 = String.valueOf(passwordField_1.getPassword());
@@ -106,6 +107,7 @@ public class SignUp {
 	private void initialize() {
 		Dimension ss = Toolkit.getDefaultToolkit ().getScreenSize ();
 		Dimension frameSize = new Dimension (900, 824);
+	
 		
 		frame = new JFrame();
 		frame.setUndecorated(true);
@@ -128,21 +130,35 @@ public class SignUp {
 		btnNewButton.setBounds(827, 27, 50, 28);
 		frame.getContentPane().add(btnNewButton);
 		
-		lblNewLabel_2 = new JLabel("Username");
+		lblNewLabel_2 = new JLabel("Player Name");
 		lblNewLabel_2.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
-		lblNewLabel_2.setBounds(456, 196, 114, 28);
+		lblNewLabel_2.setForeground(new Color(255, 181, 0));
+		lblNewLabel_2.setBounds(450, 153, 142, 28);
+		lblNewLabel_2.setVisible(false);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		
 		txtUsername = new JTextField();
-		txtUsername.setText("Username");
+		txtUsername.setText("Player Name");
 		txtUsername.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				txtUsername.setText("");
+				lblNewLabel_2.setVisible(true);
 
 			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtUsername.getText().trim().equals("") || 
+						txtUsername.getText().trim().toLowerCase().equals("player name")) {
+				txtUsername.setText("Player Name");
+				lblNewLabel_2.setVisible(false);
+				}
+				
+			}
 		});
+		
+		
 		
 		txtUsername.setBorder(null);
 		txtUsername.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
@@ -151,13 +167,15 @@ public class SignUp {
 		frame.getContentPane().add(txtUsername);
 		txtUsername.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBorder(null);
-		textField_3.setFont(new Font("Product Sans", Font.PLAIN, 19));
-		textField_3.setBackground(Color.WHITE);
-		textField_3.setBounds(456, 274, 363, 43);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		
+		txtUsername_1 = new JTextField();
+		txtUsername_1.setText("Username");
+		txtUsername_1.setBorder(null);
+		txtUsername_1.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		txtUsername_1.setBackground(Color.WHITE);
+		txtUsername_1.setBounds(456, 274, 363, 43);
+		frame.getContentPane().add(txtUsername_1);
+		txtUsername_1.setColumns(10);
 		
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setBorder(null);
