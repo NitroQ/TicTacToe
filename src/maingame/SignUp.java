@@ -39,7 +39,7 @@ public class SignUp {
 	private JTextField textField_4;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_5;
+	private JLabel lblNewLabel_3;
 	
 
 	public static void main(String[] args) {
@@ -167,8 +167,29 @@ public class SignUp {
 		frame.getContentPane().add(txtUsername);
 		txtUsername.setColumns(10);
 		
+		lblNewLabel_3 = new JLabel("Username");
+		lblNewLabel_3.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		lblNewLabel_3.setForeground(new Color(255, 181, 0));
+		lblNewLabel_3.setVisible(true);
+		lblNewLabel_3.setBounds(450, 243, 126, 28);
+		frame.getContentPane().add(lblNewLabel_3);
 		
 		txtUsername_1 = new JTextField();
+		txtUsername_1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtUsername_1.setText("");
+				lblNewLabel_3.setVisible(true);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtUsername_1.getText().trim().equals("") || 
+						txtUsername_1.getText().trim().toLowerCase().equals("Username")) {
+				txtUsername_1.setText("Username");
+				lblNewLabel_3.setVisible(false);
+				}
+			}
+		});
 		txtUsername_1.setText("Username");
 		txtUsername_1.setBorder(null);
 		txtUsername_1.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
@@ -257,6 +278,8 @@ public class SignUp {
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 900, 824);
 		frame.getContentPane().add(lblNewLabel);
+		
+		
 		
 		
 		
