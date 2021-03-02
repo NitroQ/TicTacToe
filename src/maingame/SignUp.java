@@ -20,15 +20,15 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.*;
 import java.awt.Cursor;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+
 
 public class SignUp {
-	
-	Connection con = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
-    Statement st = null;
+
     
 	Credentials id1;
 	public JFrame frame;
@@ -38,6 +38,7 @@ public class SignUp {
 	private JPasswordField passwordField_1;
 	private JTextField textField_4;
 	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
 	
 
 	public static void main(String[] args) {
@@ -74,18 +75,7 @@ public class SignUp {
 		String fName = txtUsername.getText();
 		String uName = textField_3.getText();
 		String pass1 = String.valueOf(passwordField.getPassword());
-		try{
-			
-            String query = "INSERT INTO `credentials`(`name`, `username`, `password`) VALUES (?,?,?)";
-             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/loginnu","root","");
-             ps = con.prepareStatement(query);
-             ps.setString(1, fName);
-             ps.setString(2, uName);
-             ps.setString(3, pass1);
-             
-		}catch(HeadlessException | SQLException ex){
-			JOptionPane.showMessageDialog(null, ex);
-		}
+	
 		id1.setFname(fName);
 		id1.setUname(uName);
 		id1.setpass1(pass1);
@@ -138,11 +128,26 @@ public class SignUp {
 		btnNewButton.setBounds(827, 27, 50, 28);
 		frame.getContentPane().add(btnNewButton);
 		
+		lblNewLabel_2 = new JLabel("Username");
+		lblNewLabel_2.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		lblNewLabel_2.setBounds(456, 196, 114, 28);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		
 		txtUsername = new JTextField();
+		txtUsername.setText("Username");
+		txtUsername.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtUsername.setText("");
+
+			}
+		});
+		
 		txtUsername.setBorder(null);
-		txtUsername.setFont(new Font("Product Sans", Font.PLAIN, 19));
+		txtUsername.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 		txtUsername.setBackground(Color.WHITE);
-		txtUsername.setBounds(456, 196, 363, 48);
+		txtUsername.setBounds(456, 189, 363, 43);
 		frame.getContentPane().add(txtUsername);
 		txtUsername.setColumns(10);
 		
@@ -150,29 +155,33 @@ public class SignUp {
 		textField_3.setBorder(null);
 		textField_3.setFont(new Font("Product Sans", Font.PLAIN, 19));
 		textField_3.setBackground(Color.WHITE);
-		textField_3.setBounds(456, 295, 363, 48);
+		textField_3.setBounds(456, 274, 363, 43);
 		frame.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setBorder(null);
 		passwordField_1.setBackground(Color.WHITE);
-		passwordField_1.setBounds(461, 581, 358, 54);
+		passwordField_1.setBounds(456, 532, 358, 43);
 		frame.getContentPane().add(passwordField_1);
 		
 		textField_4 = new JTextField();
 		textField_4.setBorder(null);
 		textField_4.setFont(new Font("Product Sans", Font.PLAIN, 19));
 		textField_4.setBackground(Color.WHITE);
-		textField_4.setBounds(456, 388, 363, 48);
+		textField_4.setBounds(456, 358, 363, 43);
 		frame.getContentPane().add(textField_4);
 		textField_4.setColumns(10);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBorder(null);
 		passwordField.setBackground(Color.WHITE);
-		passwordField.setBounds(456, 487, 363, 48);
+		passwordField.setBounds(456, 444, 363, 43);
 		frame.getContentPane().add(passwordField);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("");
+		chckbxNewCheckBox.setBounds(459, 589, 21, 23);
+		frame.getContentPane().add(chckbxNewCheckBox);
 		
 		JLabel lblNewLabel_11 = new JLabel("Sign Up");
 		lblNewLabel_11.addMouseListener(new MouseAdapter() {
@@ -224,11 +233,16 @@ public class SignUp {
 		frame.getContentPane().add(lblNewLabel_10);
 		
 		
-		JLabel lblNewLabel = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/GroupsSignup.png")).getImage();
+		JLabel lblNewLabel = new JLabel("Username");
+		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 23));
+		Image img = new ImageIcon(this.getClass().getResource("/SignUpBlank.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 900, 824);
 		frame.getContentPane().add(lblNewLabel);
+		
+		
+		
+		
 		
 		
 		
