@@ -27,7 +27,7 @@ public class Login {
 	public JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
-
+	// Launch the application
 
 	
 	public static void main(String[] args) {
