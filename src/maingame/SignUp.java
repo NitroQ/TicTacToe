@@ -36,10 +36,13 @@ public class SignUp {
 	private JTextField txtUsername_1;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
-	private JTextField textField_4;
+	private JTextField txtEmail;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
+	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_5;
+	private JLabel lblNewLabel_6;
 	
 
 	public static void main(String[] args) {
@@ -86,7 +89,7 @@ public class SignUp {
 	public boolean checkFields(){
 		String sName = txtUsername.getText();
 		String uName = txtUsername_1.getText();
-		String mail = textField_4.getText();
+		String mail = txtEmail.getText();
 		String pass1 = String.valueOf(passwordField.getPassword());
 		String pass2 = String.valueOf(passwordField_1.getPassword());
 	
@@ -143,7 +146,10 @@ public class SignUp {
 		txtUsername.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
+				if (txtUsername.getText().trim().equals("") || 
+						txtUsername.getText().trim().toLowerCase().equals("player name")) {
 				txtUsername.setText("");
+				}
 				lblNewLabel_2.setVisible(true);
 
 			}
@@ -170,7 +176,7 @@ public class SignUp {
 		lblNewLabel_3 = new JLabel("Username");
 		lblNewLabel_3.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 		lblNewLabel_3.setForeground(new Color(255, 181, 0));
-		lblNewLabel_3.setVisible(true);
+		lblNewLabel_3.setVisible(false);
 		lblNewLabel_3.setBounds(450, 243, 126, 28);
 		frame.getContentPane().add(lblNewLabel_3);
 		
@@ -178,13 +184,17 @@ public class SignUp {
 		txtUsername_1.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
+				if (txtUsername_1.getText().trim().equals("") || 
+						txtUsername_1.getText().trim().toLowerCase().equals("username")) {
 				txtUsername_1.setText("");
+				
+				}
 				lblNewLabel_3.setVisible(true);
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtUsername_1.getText().trim().equals("") || 
-						txtUsername_1.getText().trim().toLowerCase().equals("Username")) {
+						txtUsername_1.getText().trim().toLowerCase().equals("username")) {
 				txtUsername_1.setText("Username");
 				lblNewLabel_3.setVisible(false);
 				}
@@ -198,21 +208,116 @@ public class SignUp {
 		frame.getContentPane().add(txtUsername_1);
 		txtUsername_1.setColumns(10);
 		
-		passwordField_1 = new JPasswordField();
+		lblNewLabel_6 = new JLabel("Repeat Password");
+		lblNewLabel_6.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		lblNewLabel_6.setForeground(new Color(255, 181, 0));
+		lblNewLabel_6.setVisible(false);
+		lblNewLabel_6.setBounds(450, 498, 257, 33);
+		frame.getContentPane().add(lblNewLabel_6);
+		
+		passwordField_1 = new JPasswordField("Repeat Password");
+		passwordField_1.setEchoChar((char)0);
+		passwordField_1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (String.valueOf(passwordField_1.getPassword()).trim().equals("") || 
+						String.valueOf(passwordField_1.getPassword()).trim().toLowerCase().equals("repeat password")) {
+					passwordField_1.setText("");
+					
+				}
+				lblNewLabel_6.setVisible(true);
+				passwordField_1.setEchoChar((char)0);
+				
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (String.valueOf(passwordField_1.getPassword()).trim().equals("") || 
+						String.valueOf(passwordField_1.getPassword()).trim().toLowerCase().equals("repeat password")) {
+					passwordField_1.setText("Repeat Password");
+				lblNewLabel_6.setVisible(false);
+				passwordField_1.setEchoChar((char)0); 
+				}else if(!String.valueOf(passwordField_1.getPassword()).trim().equals("") || 
+						!String.valueOf(passwordField_1.getPassword()).trim().toLowerCase().equals("repeat password")){
+					passwordField_1.setEchoChar('*'); 
+				}
+			}
+		});
+		passwordField_1.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 		passwordField_1.setBorder(null);
 		passwordField_1.setBackground(Color.WHITE);
 		passwordField_1.setBounds(456, 532, 358, 43);
 		frame.getContentPane().add(passwordField_1);
 		
-		textField_4 = new JTextField();
-		textField_4.setBorder(null);
-		textField_4.setFont(new Font("Product Sans", Font.PLAIN, 19));
-		textField_4.setBackground(Color.WHITE);
-		textField_4.setBounds(456, 358, 363, 43);
-		frame.getContentPane().add(textField_4);
-		textField_4.setColumns(10);
+	    lblNewLabel_4 = new JLabel("Email");
+		lblNewLabel_4.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		lblNewLabel_4.setForeground(new Color(255, 181, 0));
+		lblNewLabel_4.setVisible(false);
+		lblNewLabel_4.setBounds(450, 328, 86, 28);
+		frame.getContentPane().add(lblNewLabel_4);
 		
-		passwordField = new JPasswordField();
+		txtEmail = new JTextField("");
+		txtEmail.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtEmail.getText().trim().equals("") || 
+						txtEmail.getText().trim().toLowerCase().equals("email")) {
+					txtEmail.setText("");
+				}
+				lblNewLabel_4.setVisible(true);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtEmail.getText().trim().equals("") || 
+						txtEmail.getText().trim().toLowerCase().equals("email")) {
+					txtEmail.setText("Email");
+				lblNewLabel_4.setVisible(false);
+				}
+			}
+		});
+		txtEmail.setText("Email");
+		txtEmail.setBorder(null);
+		txtEmail.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		txtEmail.setBackground(Color.WHITE);
+		txtEmail.setBounds(456, 358, 363, 43);
+		frame.getContentPane().add(txtEmail);
+		txtEmail.setColumns(10);
+		
+		lblNewLabel_5 = new JLabel("Password");
+		lblNewLabel_5.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		lblNewLabel_5.setForeground(new Color(255, 181, 0));
+		lblNewLabel_5.setVisible(false);
+		lblNewLabel_5.setBounds(450, 412, 120, 28);
+		frame.getContentPane().add(lblNewLabel_5);
+		
+		passwordField = new JPasswordField("Password");
+		passwordField.setEchoChar((char)0);
+		passwordField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (String.valueOf(passwordField.getPassword()).trim().equals("") || 
+						String.valueOf(passwordField.getPassword()).trim().toLowerCase().equals("password")) {
+				passwordField.setText("");
+				}
+				lblNewLabel_5.setVisible(true);
+				passwordField.setEchoChar((char)0);
+				
+			}
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (String.valueOf(passwordField.getPassword()).trim().equals("") || 
+						String.valueOf(passwordField.getPassword()).trim().toLowerCase().equals("password")) {
+					passwordField.setText("Password");
+				lblNewLabel_5.setVisible(false);
+				passwordField.setEchoChar((char)0); 
+				}else if(!String.valueOf(passwordField.getPassword()).trim().equals("") || 
+						!String.valueOf(passwordField.getPassword()).trim().toLowerCase().equals("password")){
+					passwordField.setEchoChar('*'); 
+				}
+				
+			}
+		});
+		passwordField.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 		passwordField.setBorder(null);
 		passwordField.setBackground(Color.WHITE);
 		passwordField.setBounds(456, 444, 363, 43);
@@ -278,6 +383,12 @@ public class SignUp {
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 900, 824);
 		frame.getContentPane().add(lblNewLabel);
+		
+		
+		
+	
+		
+		
 		
 		
 		
