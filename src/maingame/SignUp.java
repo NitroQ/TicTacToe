@@ -370,6 +370,12 @@ public class SignUp {
 		lblNewLabel_1.setFont(new Font("Luckiest Guy", Font.BOLD, 33));
 		frame.getContentPane().add(lblNewLabel_1);
 		
+		JLabel lblNewLabel_7 = new JLabel("");
+		Image img5 = new ImageIcon(this.getClass().getResource("/TicTac.gif")).getImage();
+		lblNewLabel_7.setIcon(new ImageIcon(img5));
+		lblNewLabel_7.setBounds(222, 29, 180, 180);
+		frame.getContentPane().add(lblNewLabel_7);
+		
 		JLabel lblNewLabel_10 = new JLabel("");
 		lblNewLabel_10.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_10.addMouseListener(new MouseAdapter() {
@@ -392,10 +398,12 @@ public class SignUp {
 		
 		JLabel lblNewLabel = new JLabel("Username");
 		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 23));
-		Image img = new ImageIcon(this.getClass().getResource("/SignUpBlank.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/SignUp.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 900, 824);
 		frame.getContentPane().add(lblNewLabel);
+		
+		
 		
 		
 		
