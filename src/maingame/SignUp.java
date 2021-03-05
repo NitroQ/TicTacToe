@@ -25,6 +25,8 @@ import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 
 public class SignUp {
@@ -43,6 +45,7 @@ public class SignUp {
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
 	private JLabel lblNewLabel_6;
+	private JCheckBox chkbox;
 	
 
 	public static void main(String[] args) {
@@ -92,15 +95,19 @@ public class SignUp {
 		String mail = txtEmail.getText();
 		String pass1 = String.valueOf(passwordField.getPassword());
 		String pass2 = String.valueOf(passwordField_1.getPassword());
+		
+		
+		
 	
-		
-		
 		if(sName.trim().equals("") || uName.trim().equals("")|| mail.trim().equals("")|| pass1.trim().equals("") || pass2.trim().equals("")){
 			 JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty","Empty Fields",2);
 	            return false;
 		}else if(!pass1.equals(pass2)) {
 			JOptionPane.showMessageDialog(null, "Password Doesn't Match","Confirm Password",2); 
 			 return false;
+		}else if(chkbox.isSelected() == false){
+			JOptionPane.showMessageDialog(null, "Agree to the Terms and Conditions","Confirm Service Usage",2); 
+			return false;
 		}else {
 			return true;
 		}
@@ -323,9 +330,15 @@ public class SignUp {
 		passwordField.setBounds(456, 444, 363, 43);
 		frame.getContentPane().add(passwordField);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("");
-		chckbxNewCheckBox.setBounds(459, 589, 21, 23);
-		frame.getContentPane().add(chckbxNewCheckBox);
+		chkbox = new JCheckBox("");
+		chkbox.setSelected(false);
+		chkbox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				
+			}
+		});
+		chkbox.setBounds(459, 589, 21, 23);
+		frame.getContentPane().add(chkbox);
 		
 		JLabel lblNewLabel_11 = new JLabel("Sign Up");
 		lblNewLabel_11.addMouseListener(new MouseAdapter() {
