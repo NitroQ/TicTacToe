@@ -1,25 +1,12 @@
 package maingame;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.border.MatteBorder;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Game {
-
 	JFrame frame_1;
 	private JPanel panel;
 	private JButton[][] board;
@@ -35,7 +22,7 @@ public class Game {
 	private JButton helpbutton;
 	private JButton privacy;
 	private JButton terms;
-	private JLabel lblNewLabel_1;
+	private JLabel logomenu;
 	private JLabel playerplaying;
 
 	/**
@@ -104,7 +91,10 @@ public class Game {
 		exitbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		exitbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				int exitconfirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
+				if (exitconfirmation == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
 			}
 		});
 		exitbutton.setFocusPainted(false);
@@ -195,10 +185,6 @@ public class Game {
 		sizethree.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		sizefour = new JMenuItem("4 x 4");
 		sizefour.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-		sizefive = new JMenuItem("5 x 5");
-		sizefive.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-		sizesix = new JMenuItem("6 x 6");
-		sizesix.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 	
 		mode = new JMenu("MODE");
 		mode.addMouseListener(new MouseAdapter() {
@@ -220,18 +206,16 @@ public class Game {
 		AI = new JMenuItem("VS. COMPUTER");
 		AI.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		
-		lblNewLabel_1 = new JLabel("");
+		logomenu = new JLabel("");
 		Image menulogo = new ImageIcon(this.getClass().getResource("/golo.png")).getImage();
-		lblNewLabel_1.setIcon(new ImageIcon(menulogo));
-		menuBar.add(lblNewLabel_1);
+		logomenu.setIcon(new ImageIcon(menulogo));
+		menuBar.add(logomenu);
 		
 		file.add(newGame);
 		file.add(quit);
 		menuBar.add(file);
 		diff.add(sizethree);
 		diff.add(sizefour);
-		diff.add(sizefive);
-		diff.add(sizesix);
 		menuBar.add(diff);
 		mode.add(twoplayer);
 		mode.add(AI);
@@ -268,7 +252,9 @@ public class Game {
 			public void actionPerformed(ActionEvent e) {
 				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
 				if(result == JOptionPane.YES_OPTION){
-					new Welcomepage().frame.setVisible(true);
+					Credentials cd = new Credentials();
+					Login in = new Login(cd);
+					in.frame.setVisible(true);
 					frame_1.dispose();
 				}     
 			}

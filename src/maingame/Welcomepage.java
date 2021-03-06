@@ -62,7 +62,10 @@ public class Welcomepage {
 		JButton exitbtn = new JButton("X");
 		exitbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				int exitconfirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
+				if (exitconfirmation == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
 			}
 		});
 		exitbtn.setFocusPainted(false);
@@ -97,7 +100,7 @@ public class Welcomepage {
 		});
 		playbtn.setBorderPainted(false);
 		playbtn.setContentAreaFilled(false);
-		playbtn.setBounds(689, 120, 407, 402);
+		playbtn.setBounds(573, 112, 407, 402);
 		frame.getContentPane().add(playbtn);
 		
 		JLabel logo = new JLabel("");
@@ -115,7 +118,6 @@ public class Welcomepage {
 	}
 
 	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
 		
 	}
 }
