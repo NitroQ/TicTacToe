@@ -19,13 +19,15 @@ import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 
 public class Login {
 	Credentials id1;
 	
 	public JFrame frame;
-	private JTextField textField;
+	private JTextField txtUsername;
 	private JPasswordField passwordField;
 	// Launch the application
 
@@ -53,7 +55,7 @@ public class Login {
 	
 	private boolean checkFields(){
 	
-		String uName = textField.getText();
+		String uName = txtUsername.getText();
 		String pass1 = String.valueOf(passwordField.getPassword());
 		String usName = id1.getUname();
 		String opass = id1.getpass1();
@@ -81,7 +83,7 @@ public class Login {
 	 */
 	private void initialize() {
 		Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frameSize = new Dimension (1280, 720);
+		Dimension frameSize = new Dimension (800, 484);
 		
 		frame = new JFrame();
 		frame.setUndecorated(true);
@@ -101,8 +103,8 @@ public class Login {
 			}
 		});
 		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setFont(new Font("Luckiest Guy", Font.BOLD, 41));
-		lblNewLabel_1.setBounds(785, 99, 170, 57);
+		lblNewLabel_1.setFont(new Font("Luckiest Guy", Font.BOLD, 27));
+		lblNewLabel_1.setBounds(529, 56, 170, 57);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("X");
@@ -116,20 +118,48 @@ public class Login {
 		btnNewButton.setBorder(new RoundedBorder(15));
 		btnNewButton.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
 		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBounds(1111, 25, 50, 28);
+		btnNewButton.setBounds(731, 22, 50, 28);
 		frame.getContentPane().add(btnNewButton);
 		
-		textField = new JTextField();
-		textField.setBorder(null);
-		textField.setFont(new Font("Product Sans", Font.PLAIN, 19));
-		textField.setBackground(Color.WHITE);
-		textField.setBounds(609, 269, 471, 45);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		JLabel lblNewLabel_3 = new JLabel("Username");
+		lblNewLabel_3.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
+		lblNewLabel_3.setVisible(false);
+		lblNewLabel_3.setForeground(new Color(255, 181, 0));
+		lblNewLabel_3.setBounds(396, 137, 114, 28);
+		frame.getContentPane().add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_5 = new JLabel("");
-		Image img3 = new ImageIcon(this.getClass().getResource("/Login.png")).getImage();
-		lblNewLabel_5.setIcon(new ImageIcon(img3));
+		
+		txtUsername = new JTextField();
+		txtUsername.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtUsername.getText().trim().equals("") || 
+						txtUsername.getText().trim().toLowerCase().equals("username")) {
+				txtUsername.setText("");
+				
+				}
+				lblNewLabel_3.setVisible(true);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtUsername.getText().trim().equals("") || 
+						txtUsername.getText().trim().toLowerCase().equals("username")) {
+				txtUsername.setText("Username");
+				lblNewLabel_3.setVisible(false);
+				}
+			}
+		});
+		txtUsername.setText("Username");
+		txtUsername.setBorder(null);
+		txtUsername.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		txtUsername.setBackground(Color.WHITE);
+		txtUsername.setBounds(405, 171, 322, 48);
+		frame.getContentPane().add(txtUsername);
+		txtUsername.setColumns(10);
+		
+		JLabel lblNewLabel_5 = new JLabel("Login");
+		lblNewLabel_5.setFont(new Font("Luckiest Guy", Font.BOLD, 19));
+		lblNewLabel_5.setForeground(new Color(255, 181, 0));
 		lblNewLabel_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -143,10 +173,12 @@ public class Login {
 				}
 			}
 		});
-		lblNewLabel_5.setBounds(1012, 557, 105, 48);
+		lblNewLabel_5.setBounds(665, 377, 105, 48);
 		frame.getContentPane().add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_4 = new JLabel("");
+		JLabel lblNewLabel_4 = new JLabel("X");
+		lblNewLabel_4.setFont(new Font("Luckiest Guy", Font.BOLD, 69));
+		lblNewLabel_4.setForeground(new Color(255, 181, 0));
 		lblNewLabel_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			@Override
@@ -159,23 +191,57 @@ public class Login {
 				}
 			}
 		});
-		Image img2 = new ImageIcon(this.getClass().getResource("/Ellipse 1.png")).getImage();
-		lblNewLabel_4.setIcon(new ImageIcon(img2));
-		lblNewLabel_4.setBounds(1002, 489, 131, 78);
+		
+		lblNewLabel_4.setBounds(669, 329, 131, 78);
 		frame.getContentPane().add(lblNewLabel_4); 
 		
-		passwordField = new JPasswordField();
+		JLabel lblNewLabel_2 = new JLabel("Password");
+		lblNewLabel_2.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
+		lblNewLabel_2.setForeground(new Color(255, 181, 0));
+		lblNewLabel_2.setVisible(false);
+		lblNewLabel_2.setBounds(394, 219, 140, 45);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		passwordField = new JPasswordField("Password");
+		passwordField.setEchoChar((char)0);
+		passwordField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (String.valueOf(passwordField.getPassword()).trim().equals("") || 
+						String.valueOf(passwordField.getPassword()).trim().toLowerCase().equals("password")) {
+					passwordField.setText("");
+				}
+				lblNewLabel_2.setVisible(true);
+				passwordField.setEchoChar((char)0);
+				
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (String.valueOf(passwordField.getPassword()).trim().equals("") || 
+						String.valueOf(passwordField.getPassword()).trim().toLowerCase().equals("password")) {
+					passwordField.setText("Password");
+				lblNewLabel_2.setVisible(false);
+				passwordField.setEchoChar((char)0); 
+				}else if(!String.valueOf(passwordField.getPassword()).trim().equals("") || 
+						!String.valueOf(passwordField.getPassword()).trim().toLowerCase().equals("password")){
+					passwordField.setEchoChar('*'); 
+				}
+			}
+		});
 		passwordField.setBorder(null);
-		passwordField.setFont(new Font("Product Sans", Font.PLAIN, 19));
-		passwordField.setBounds(609, 395, 471, 45);
+		passwordField.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		passwordField.setBounds(405, 260, 322, 45);
 		frame.getContentPane().add(passwordField);
 		
 		
 		JLabel lblNewLabel = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/GroupLogin.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/LoginSmall.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
-		lblNewLabel.setBounds(0, 0, 1280, 720);
+		lblNewLabel.setBounds(0, 0, 800, 484);
 		frame.getContentPane().add(lblNewLabel);
+		
+		
+		
 		
 	}
 

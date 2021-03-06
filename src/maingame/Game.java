@@ -466,5 +466,6 @@ public class Game {
 	}
 
 	public void setVisible(boolean b) {
+		}
 	}
-}
+
