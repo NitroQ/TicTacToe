@@ -89,7 +89,8 @@ public class Welcomepage {
 		});
 		playbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Login in = new Login(null);
+				Credentials cd = new Credentials();
+				Login in = new Login(cd);
 				in.frame.setVisible(true);
 				frame.dispose();
 			}
