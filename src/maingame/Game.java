@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.border.LineBorder;
 
 public class Game {
 
@@ -25,9 +26,9 @@ public class Game {
 	private JButton[][] board;
 	private boolean hasWinner;
 	private JMenuBar menuBar;
-	private JMenu file, diff, mode, help;
+	private JMenu file, diff, mode;
 	private JMenuItem newGame, quit;
-	private JMenuItem sizethree, sizefour, sizefive, sizesix;
+	private JMenuItem sizethree, sizefour;
 	private JMenuItem twoplayer, AI;
 	private String currentPlayer;
 	private JLabel lblNewLabel;
@@ -36,7 +37,7 @@ public class Game {
 	private JButton privacy;
 	private JButton terms;
 	private JLabel lblNewLabel_1;
-	private JLabel playerplaying;
+	private JLabel lblNewLabel_2;
 
 	/**
 	 * Launch the application.
@@ -67,8 +68,8 @@ public class Game {
 	private void initialize() {
 		frame_1 = new JFrame();
 		panel = new JPanel(new GridLayout(3, 3));
-		panel.setLocation(307, 61);
-		panel.setSize(779, 558);
+		panel.setLocation(307, 91);
+		panel.setSize(779, 528);
 		frame_1.getContentPane().add(panel);
 		frame_1.setTitle("TIC TAC TOE");
 		frame_1.setResizable(false);
@@ -112,7 +113,7 @@ public class Game {
 		exitbutton.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 14));
 		exitbutton.setBackground(new Color(255, 181, 0));
 		exitbutton.setBorderPainted(false);
-		exitbutton.setBounds(1044, 10, 42, 30);
+		exitbutton.setBounds(1044, 5, 42, 20);
 		frame_1.getContentPane().add(exitbutton);
 		
 		JButton minibutton = new JButton("_");
@@ -140,12 +141,12 @@ public class Game {
 		minibutton.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 15));
 		minibutton.setBackground(new Color(255, 181, 0));
 		minibutton.setBorderPainted(false);
-		minibutton.setBounds(998, 10, 42, 30);
+		minibutton.setBounds(998, 5, 42, 20);
 		frame_1.getContentPane().add(minibutton);
 		
 		menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(62, 62, 62));
-		menuBar.setBounds(0, 0, 1096, 50);
+		menuBar.setBounds(0, 30, 1096, 50);
 		
 		file = new JMenu("FILE");
 		file.addMouseListener(new MouseAdapter() {
@@ -195,10 +196,7 @@ public class Game {
 		sizethree.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		sizefour = new JMenuItem("4 x 4");
 		sizefour.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-		sizefive = new JMenuItem("5 x 5");
-		sizefive.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-		sizesix = new JMenuItem("6 x 6");
-		sizesix.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+
 	
 		mode = new JMenu("MODE");
 		mode.addMouseListener(new MouseAdapter() {
@@ -220,18 +218,16 @@ public class Game {
 		AI = new JMenuItem("VS. COMPUTER");
 		AI.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		
-		lblNewLabel_1 = new JLabel("");
-		Image menulogo = new ImageIcon(this.getClass().getResource("/golo.png")).getImage();
-		lblNewLabel_1.setIcon(new ImageIcon(menulogo));
-		menuBar.add(lblNewLabel_1);
+//		lblNewLabel_1 = new JLabel("");
+//		Image menulogo = new ImageIcon(this.getClass().getResource("/golo.png")).getImage();
+//		lblNewLabel_1.setIcon(new ImageIcon(menulogo));
+//		menuBar.add(lblNewLabel_1);
 		
 		file.add(newGame);
 		file.add(quit);
 		menuBar.add(file);
 		diff.add(sizethree);
 		diff.add(sizefour);
-		diff.add(sizefive);
-		diff.add(sizesix);
 		menuBar.add(diff);
 		mode.add(twoplayer);
 		mode.add(AI);
@@ -355,6 +351,17 @@ public class Game {
 		terms.setBounds(70, 596, 77, 23);
 		frame_1.getContentPane().add(terms);
 		
+		JMenuBar menuBar_1 = new JMenuBar();
+		menuBar_1.setBorder(new LineBorder(Color.BLACK));
+		menuBar_1.setBackground(new Color(62, 62, 62));
+		menuBar_1.setBounds(0, 0, 1096, 30);
+		frame_1.getContentPane().add(menuBar_1);
+		
+		lblNewLabel_2 = new JLabel("");
+		Image toplogo = new ImageIcon(this.getClass().getResource("/smallerlogo.png")).getImage();
+		lblNewLabel_2.setIcon(new ImageIcon(toplogo));
+		menuBar_1.add(lblNewLabel_2);
+		
 		lblNewLabel = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/back game.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
@@ -466,5 +473,6 @@ public class Game {
 	}
 
 	public void setVisible(boolean b) {
+		}
 	}
-}
+

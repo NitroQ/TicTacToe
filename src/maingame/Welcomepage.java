@@ -73,6 +73,12 @@ public class Welcomepage {
 		exitbtn.setBounds(1036, 11, 50, 28);
 		frame.getContentPane().add(exitbtn);
 		
+		JLabel lblNewLabel_7 = new JLabel("");
+		Image img5 = new ImageIcon(this.getClass().getResource("/TicTac160p.gif")).getImage();
+		lblNewLabel_7.setIcon(new ImageIcon(img5));
+		lblNewLabel_7.setBounds(248, 40, 200, 160);
+		frame.getContentPane().add(lblNewLabel_7);
+		
 		JButton playbtn = new JButton("");
 		Image buttonplay = new ImageIcon(this.getClass().getResource("/playbtn.png")).getImage();
 		playbtn.setIcon(new ImageIcon(buttonplay));
@@ -100,10 +106,47 @@ public class Welcomepage {
 		frame.getContentPane().add(playbtn);
 		
 		JLabel logo = new JLabel("");
+		logo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		Image LOGO = new ImageIcon(this.getClass().getResource("/logooo.png")).getImage();
 		logo.setIcon(new ImageIcon(LOGO));
 		logo.setBounds(10, 532, 161, 87);
 		frame.getContentPane().add(logo);
+		Image ttt = new ImageIcon(this.getClass().getResource("/tictactoename.png")).getImage();
+		
+		JButton btnNewButton = new JButton();
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				Image whiteX = new ImageIcon(this.getClass().getResource("/whiteX.png")).getImage();
+				btnNewButton.setIcon(new ImageIcon(whiteX));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				Image bigX = new ImageIcon(this.getClass().getResource("/bigX.png")).getImage();
+				btnNewButton.setIcon(new ImageIcon(bigX));
+			}
+		});
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int sure = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
+				if (sure == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+			}
+		});
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		Image bigX = new ImageIcon(this.getClass().getResource("/bigX.png")).getImage();
+		btnNewButton.setIcon(new ImageIcon(bigX));
+		btnNewButton.setBounds(434, 40, 423, 436);
+		frame.getContentPane().add(btnNewButton);
+		
+		
 		
 		JLabel background = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/welcomeback.png")).getImage();
