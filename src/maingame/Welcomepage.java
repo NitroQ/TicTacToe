@@ -1,6 +1,7 @@
 package maingame;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 
@@ -13,7 +14,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Welcomepage {
 
@@ -53,57 +58,58 @@ public class Welcomepage {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton();
-		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Credentials cd = new Credentials();
-				Login lg = new Login(cd);
-				lg.frame.setVisible(true);
-				frame.dispose();
-			}
-		});
-		btnNewButton.setFocusPainted(false);
-		btnNewButton.setIcon(new ImageIcon(Welcomepage.class.getResource("/play.png")));
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setBounds(750, 164, 326, 270);
-		frame.getContentPane().add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton exitbtn = new JButton("X");
+		exitbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		btnNewButton_1.setContentAreaFilled(false);
-		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.setBounds(589, 351, 102, 45);
-		frame.getContentPane().add(btnNewButton_1);
+		exitbtn.setFocusPainted(false);
+		exitbtn.setFont(new Font("Tahoma", Font.BOLD, 16));
+		exitbtn.setBorder(new RoundedBorder(15));
+		exitbtn.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
+		exitbtn.setForeground(new Color(0, 0, 0));
+		exitbtn.setBounds(1036, 11, 50, 28);
+		frame.getContentPane().add(exitbtn);
 		
-		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "PRIVACY POLICY");
+		JButton playbtn = new JButton("");
+		playbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				playbtn.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\playhmm.png"));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				playbtn.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\playbtn.png"));
 			}
 		});
-		btnNewButton_2.setContentAreaFilled(false);
-		btnNewButton_2.setBorderPainted(false);
-		btnNewButton_2.setBounds(1050, 579, 46, 51);
-		frame.getContentPane().add(btnNewButton_2);
+		playbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login in = new Login(null);
+				in.frame.setVisible(true);
+				frame.dispose();
+			}
+		});
+		playbtn.setBorderPainted(false);
+		playbtn.setContentAreaFilled(false);
+		playbtn.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\playbtn.png"));
+		playbtn.setBounds(689, 120, 407, 402);
+		frame.getContentPane().add(playbtn);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Welcomepage.class.getResource("/welcomeepaage.png")));
-		lblNewLabel.setBounds(0, 0, 1096, 630);
-		frame.getContentPane().add(lblNewLabel);	
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\logooo.png"));
+		logo.setBounds(10, 532, 161, 87);
+		frame.getContentPane().add(logo);
 		
+		JLabel background = new JLabel("");
+		background.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\1x\\welcomeback.png"));
+		background.setBounds(0, 0, 1096, 630);
+		frame.getContentPane().add(background);	
+
 	}
 
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

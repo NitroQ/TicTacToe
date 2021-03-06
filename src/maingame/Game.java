@@ -20,7 +20,6 @@ import java.awt.event.MouseEvent;
 
 public class Game {
 
-//	private JFrame frame;
 	JFrame frame_1;
 	private JPanel panel;
 	private JButton[][] board;
@@ -31,13 +30,13 @@ public class Game {
 	private JMenuItem sizethree, sizefour, sizefive, sizesix;
 	private JMenuItem twoplayer, AI;
 	private String currentPlayer;
-	private JButton btnNewButton;
 	private JLabel lblNewLabel;
 	private JButton btnNewButton_1;
-	private JButton btnNewButton_2;
-	private JButton btnNewButton_3;
 	private JButton helpbutton;
 	private JButton privacy;
+	private JButton terms;
+	private JLabel lblNewLabel_1;
+	private JLabel playerplaying;
 
 	/**
 	 * Launch the application.
@@ -66,11 +65,10 @@ public class Game {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-//		frame = new JFrame();
 		frame_1 = new JFrame();
 		panel = new JPanel(new GridLayout(3, 3));
-		panel.setLocation(26, 51);
-		panel.setSize(550, 556);
+		panel.setLocation(307, 61);
+		panel.setSize(779, 558);
 		frame_1.getContentPane().add(panel);
 		frame_1.setTitle("TIC TAC TOE");
 		frame_1.setResizable(false);
@@ -114,7 +112,7 @@ public class Game {
 		exitbutton.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 14));
 		exitbutton.setBackground(new Color(255, 181, 0));
 		exitbutton.setBorderPainted(false);
-		exitbutton.setBounds(1044, 4, 42, 25);
+		exitbutton.setBounds(1044, 10, 42, 30);
 		frame_1.getContentPane().add(exitbutton);
 		
 		JButton minibutton = new JButton("_");
@@ -142,12 +140,13 @@ public class Game {
 		minibutton.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 15));
 		minibutton.setBackground(new Color(255, 181, 0));
 		minibutton.setBorderPainted(false);
-		minibutton.setBounds(998, 4, 42, 25);
+		minibutton.setBounds(998, 10, 42, 30);
 		frame_1.getContentPane().add(minibutton);
 		
 		menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(62, 62, 62));
-		menuBar.setBounds(0, 0, 1096, 34);
+		menuBar.setBounds(0, 0, 1096, 50);
+		
 		file = new JMenu("FILE");
 		file.addMouseListener(new MouseAdapter() {
 			@Override
@@ -220,11 +219,10 @@ public class Game {
 		twoplayer.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		AI = new JMenuItem("VS. COMPUTER");
 		AI.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-//		help = new JMenu("HELP");
-//		help.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 17));
-//		help.setForeground(Color.WHITE);
-//		help.setForeground(Color.WHITE);
-//		help.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 17));
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\golo.png"));
+		menuBar.add(lblNewLabel_1);
 		
 		file.add(newGame);
 		file.add(quit);
@@ -237,7 +235,6 @@ public class Game {
 		mode.add(twoplayer);
 		mode.add(AI);
 		menuBar.add(mode);
-//		menuBar.add(help);
 		frame_1.getContentPane().add(menuBar);
 		
 		helpbutton = new JButton("HELP");
@@ -278,7 +275,7 @@ public class Game {
 		logoutbtn.setFocusPainted(false);
 		logoutbtn.setContentAreaFilled(false);
 		logoutbtn.setBorderPainted(false);
-		logoutbtn.setBounds(710, 525, 111, 82);
+		logoutbtn.setBounds(155, 493, 111, 82);
 		frame_1.getContentPane().add(logoutbtn);
 		
 		JButton newGamebtn = new JButton("");
@@ -292,7 +289,7 @@ public class Game {
 		newGamebtn.setFocusPainted(false);
 		newGamebtn.setContentAreaFilled(false);
 		newGamebtn.setBorderPainted(false);
-		newGamebtn.setBounds(604, 523, 117, 94);
+		newGamebtn.setBounds(30, 463, 117, 94);
 		frame_1.getContentPane().add(newGamebtn);		
 		
 		btnNewButton_1 = new JButton("");
@@ -306,10 +303,20 @@ public class Game {
 		btnNewButton_1.setFocusPainted(false);
 		btnNewButton_1.setContentAreaFilled(false);
 		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.setBounds(985, 560, 111, 50);
+		btnNewButton_1.setBounds(94, 234, 111, 50);
 		frame_1.getContentPane().add(btnNewButton_1);
 		
 		privacy = new JButton("Privacy");
+		privacy.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				privacy.setText("<HTML><U>Privacy</U></HTML>");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				privacy.setText("Privacy");
+			}
+		});
 		privacy.setFocusPainted(false);
 		privacy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -319,11 +326,36 @@ public class Game {
 		privacy.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		privacy.setContentAreaFilled(false);
 		privacy.setBorderPainted(false);
-		privacy.setBounds(586, 51, 101, 23);
+		privacy.setBounds(0, 596, 83, 23);
 		frame_1.getContentPane().add(privacy);
 		
+		terms = new JButton("Terms");
+		terms.setHorizontalAlignment(SwingConstants.LEADING);
+		terms.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				terms.setText("<HTML><U>Terms</U></HTML>");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				terms.setText("Terms");
+			}
+		});
+		terms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		terms.setFocusPainted(false);
+		terms.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openWebPage("https://www.google.com/");
+			}
+		});
+		terms.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
+		terms.setContentAreaFilled(false);
+		terms.setBorderPainted(false);
+		terms.setBounds(70, 596, 77, 23);
+		frame_1.getContentPane().add(terms);
+		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Game.class.getResource("/game.png")));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\PC\\eclipse-workspace\\TicTacToeFinals\\Files\\back game.png"));
 		lblNewLabel.setBounds(0, 0, 1096, 630);
 		frame_1.getContentPane().add(lblNewLabel);
 		
@@ -352,7 +384,20 @@ public class Game {
 		for (int i = 0; i < 3; i++) { 
 			for (int j = 0; j < 3; j++) { 
 				JButton btn = new JButton();
-				btn.setFont(new Font(Font.SERIF, Font.BOLD, 100));
+				btn.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						btn.setBackground(new Color(217, 217, 217));
+						btn.setForeground(Color.WHITE);
+					}
+					@Override
+					public void mouseExited(MouseEvent e) {
+						btn.setBackground(Color.WHITE);
+						btn.setForeground(new Color(0, 0, 0));
+					}
+				});
+				btn.setVerticalAlignment(SwingConstants.BOTTOM);
+				btn.setFont(new Font("Luckiest Guy", Font.PLAIN, 150));
 				btn.setForeground(new Color(0, 0, 0));
 				btn.setBackground(Color.WHITE);
 				btn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
@@ -371,6 +416,13 @@ public class Game {
 				panel.add(btn);
 			}
 		}
+	}
+	
+	private void labelPlayer() {
+		if (currentPlayer.equals("X"))
+			playerplaying.setText("PLAYER X'S TURN");
+		else
+			playerplaying.setText("PLAYER O'S TURN");
 	}
 	
 	private void togglePlayer() {
@@ -423,5 +475,4 @@ public class Game {
 
 	public void setVisible(boolean b) {
 	}
-
 }

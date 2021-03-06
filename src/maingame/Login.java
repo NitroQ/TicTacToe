@@ -51,18 +51,14 @@ public class Login {
 		initialize();
 	}
 	
-
-	
-	
 	private boolean checkFields(){
 	
-		
 		String uName = textField.getText();
 		String pass1 = String.valueOf(passwordField.getPassword());
 		String usName = id1.getUname();
 		String opass = id1.getpass1();
 		
-		if( uName.trim().equals("")|| pass1.trim().equals("")){
+		if (uName.trim().equals("")|| pass1.trim().equals("")){
 			 JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty","Empty Fields",2);
 	            return false;
 		}else if(!pass1.equals(opass) || !uName.equals(usName)) {
@@ -115,6 +111,7 @@ public class Login {
 				System.exit(0);
 			}
 		});
+		btnNewButton.setFocusPainted(false);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton.setBorder(new RoundedBorder(15));
 		btnNewButton.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
@@ -165,9 +162,7 @@ public class Login {
 		Image img2 = new ImageIcon(this.getClass().getResource("/Ellipse 1.png")).getImage();
 		lblNewLabel_4.setIcon(new ImageIcon(img2));
 		lblNewLabel_4.setBounds(1002, 489, 131, 78);
-		frame.getContentPane().add(lblNewLabel_4);
-		
-		
+		frame.getContentPane().add(lblNewLabel_4); 
 		
 		passwordField = new JPasswordField();
 		passwordField.setBorder(null);
@@ -182,13 +177,10 @@ public class Login {
 		lblNewLabel.setBounds(0, 0, 1280, 720);
 		frame.getContentPane().add(lblNewLabel);
 		
-		
-		
-		
-		
-		
-	
-		
+	}
+
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
 		
 	}
 }

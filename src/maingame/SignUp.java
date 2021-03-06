@@ -96,8 +96,6 @@ public class SignUp {
 		String pass1 = String.valueOf(passwordField.getPassword());
 		String pass2 = String.valueOf(passwordField_1.getPassword());
 		
-		
-		
 	
 		if(sName.trim().equals("") || uName.trim().equals("")|| mail.trim().equals("")|| pass1.trim().equals("") || pass2.trim().equals("")){
 			 JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty","Empty Fields",2);
@@ -133,6 +131,7 @@ public class SignUp {
 				 System.exit(0);
 			}
 		});
+		btnNewButton.setFocusPainted(false);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton.setBorder(new RoundedBorder(15));
 		btnNewButton.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
