@@ -395,7 +395,7 @@ public class SignUp {
 		frame.getContentPane().add(lblNewLabel_10);
 		
 		
-		JLabel lblNewLabel = new JLabel("Username");
+		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 23));
 		Image img = new ImageIcon(this.getClass().getResource("/SignUp.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
