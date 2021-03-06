@@ -394,45 +394,12 @@ public class SignUp {
 		lblNewLabel_10.setBounds(744, 650, 165, 82);
 		frame.getContentPane().add(lblNewLabel_10);
 		
-		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 23));
 		Image img = new ImageIcon(this.getClass().getResource("/SignUp.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 900, 824);
-		frame.getContentPane().add(lblNewLabel);
-		
-		
-		
-		
-		
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-		
-	
-		
-		
-		
-		
-		
-		
-	
-		
-		
-		
-		
-		
+		frame.getContentPane().add(lblNewLabel);		
 		
 	}
 }

@@ -276,7 +276,7 @@ public class Game {
 		logoutbtn.setFocusPainted(false);
 		logoutbtn.setContentAreaFilled(false);
 		logoutbtn.setBorderPainted(false);
-		logoutbtn.setBounds(155, 493, 111, 82);
+		logoutbtn.setBounds(31, 490, 111, 82);
 		frame_1.getContentPane().add(logoutbtn);
 		
 		JButton newGamebtn = new JButton("");
@@ -290,7 +290,7 @@ public class Game {
 		newGamebtn.setFocusPainted(false);
 		newGamebtn.setContentAreaFilled(false);
 		newGamebtn.setBorderPainted(false);
-		newGamebtn.setBounds(30, 463, 117, 94);
+		newGamebtn.setBounds(152, 490, 117, 94);
 		frame_1.getContentPane().add(newGamebtn);		
 		
 		btnNewButton_1 = new JButton("");
@@ -304,7 +304,7 @@ public class Game {
 		btnNewButton_1.setFocusPainted(false);
 		btnNewButton_1.setContentAreaFilled(false);
 		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.setBounds(94, 234, 111, 50);
+		btnNewButton_1.setBounds(31, 421, 111, 50);
 		frame_1.getContentPane().add(btnNewButton_1);
 		
 		privacy = new JButton("Privacy");
