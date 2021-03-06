@@ -2,6 +2,7 @@ package maingame;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 
@@ -73,14 +74,17 @@ public class Welcomepage {
 		frame.getContentPane().add(exitbtn);
 		
 		JButton playbtn = new JButton("");
+		Image buttonplay = new ImageIcon(this.getClass().getResource("/playbtn.png")).getImage();
+		playbtn.setIcon(new ImageIcon(buttonplay));
 		playbtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				playbtn.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\playhmm.png"));
+				Image hoverplay = new ImageIcon(this.getClass().getResource("/playhmm.png")).getImage();
+				playbtn.setIcon(new ImageIcon(hoverplay));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				playbtn.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\playbtn.png"));
+				playbtn.setIcon(new ImageIcon(buttonplay));
 			}
 		});
 		playbtn.addActionListener(new ActionListener() {
@@ -92,17 +96,18 @@ public class Welcomepage {
 		});
 		playbtn.setBorderPainted(false);
 		playbtn.setContentAreaFilled(false);
-		playbtn.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\playbtn.png"));
 		playbtn.setBounds(689, 120, 407, 402);
 		frame.getContentPane().add(playbtn);
 		
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\logooo.png"));
+		Image LOGO = new ImageIcon(this.getClass().getResource("/logooo.png")).getImage();
+		logo.setIcon(new ImageIcon(LOGO));
 		logo.setBounds(10, 532, 161, 87);
 		frame.getContentPane().add(logo);
 		
 		JLabel background = new JLabel("");
-		background.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\1x\\welcomeback.png"));
+		Image img = new ImageIcon(this.getClass().getResource("/welcomeback.png")).getImage();
+		background.setIcon(new ImageIcon(img));
 		background.setBounds(0, 0, 1096, 630);
 		frame.getContentPane().add(background);	
 

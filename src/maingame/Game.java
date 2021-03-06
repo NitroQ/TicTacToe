@@ -221,7 +221,8 @@ public class Game {
 		AI.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		
 		lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\tictac\\golo.png"));
+		Image menulogo = new ImageIcon(this.getClass().getResource("/golo.png")).getImage();
+		lblNewLabel_1.setIcon(new ImageIcon(menulogo));
 		menuBar.add(lblNewLabel_1);
 		
 		file.add(newGame);
@@ -355,7 +356,8 @@ public class Game {
 		frame_1.getContentPane().add(terms);
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\PC\\eclipse-workspace\\TicTacToeFinals\\Files\\back game.png"));
+		Image img = new ImageIcon(this.getClass().getResource("/back game.png")).getImage();
+		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 1096, 630);
 		frame_1.getContentPane().add(lblNewLabel);
 		
@@ -418,13 +420,6 @@ public class Game {
 		}
 	}
 	
-	private void labelPlayer() {
-		if (currentPlayer.equals("X"))
-			playerplaying.setText("PLAYER X'S TURN");
-		else
-			playerplaying.setText("PLAYER O'S TURN");
-	}
-	
 	private void togglePlayer() {
 		if (currentPlayer.equals("X"))
 			currentPlayer = "O";
@@ -433,14 +428,11 @@ public class Game {
 	}
 	
 	private void hasWinner() {
-		ImageIcon kitty = new ImageIcon("C:\\Users\\PC\\OneDrive\\Desktop\\school\\images\\cat.png");
-		JLabel icon = new JLabel(kitty);
 		JLabel text = new JLabel("Congratulations!", JLabel.CENTER);
 		JLabel text2 = new JLabel("PLAYER " + currentPlayer + " WON!", JLabel.CENTER);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		panel.add(icon, BorderLayout.CENTER);
 		panel.add(text, BorderLayout.NORTH);
 		panel.add(text2, BorderLayout.SOUTH);
 		
