@@ -93,6 +93,12 @@ public class Login {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		JLabel lblNewLabel_6 = new JLabel("");
+		Image img5 = new ImageIcon(this.getClass().getResource("/TicTac150p.gif")).getImage();
+		lblNewLabel_6.setIcon(new ImageIcon(img5));
+		lblNewLabel_6.setBounds(193, 33, 150, 150);
+		frame.getContentPane().add(lblNewLabel_6);
+		
 		JLabel lblNewLabel_1 = new JLabel("SignUp");
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -239,6 +245,7 @@ public class Login {
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 800, 484);
 		frame.getContentPane().add(lblNewLabel);
+		
 		
 		
 		

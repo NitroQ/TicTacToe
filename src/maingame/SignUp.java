@@ -370,9 +370,9 @@ public class SignUp {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_7 = new JLabel("");
-		Image img5 = new ImageIcon(this.getClass().getResource("/TicTac.gif")).getImage();
+		Image img5 = new ImageIcon(this.getClass().getResource("/TicTac160p.gif")).getImage();
 		lblNewLabel_7.setIcon(new ImageIcon(img5));
-		lblNewLabel_7.setBounds(222, 29, 180, 180);
+		lblNewLabel_7.setBounds(222, 40, 160, 160);
 		frame.getContentPane().add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_10 = new JLabel("");
