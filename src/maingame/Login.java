@@ -204,6 +204,7 @@ public class Login {
 			public void focusGained(FocusEvent e) {
 				if (txtUsername.getText().trim().equals("") || 
 						txtUsername.getText().trim().toLowerCase().equals("username")) {
+				txtUsername.setFont(new Font("Tahoma", Font.PLAIN, 22));
 				txtUsername.setText("");
 				
 				}
@@ -213,6 +214,7 @@ public class Login {
 			public void focusLost(FocusEvent e) {
 				if (txtUsername.getText().trim().equals("") || 
 						txtUsername.getText().trim().toLowerCase().equals("username")) {
+				txtUsername.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 				txtUsername.setText("Username");
 				uNamelbl.setVisible(false);
 				}
@@ -280,6 +282,7 @@ public class Login {
 			public void focusGained(FocusEvent e) {
 				if (String.valueOf(txtPassword.getPassword()).trim().equals("") || 
 						String.valueOf(txtPassword.getPassword()).trim().toLowerCase().equals("password")) {
+					txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 22));
 					txtPassword.setText("");
 				}
 				passwordlbl.setVisible(true);
@@ -290,6 +293,7 @@ public class Login {
 			public void focusLost(FocusEvent e) {
 				if (String.valueOf(txtPassword.getPassword()).trim().equals("") || 
 						String.valueOf(txtPassword.getPassword()).trim().toLowerCase().equals("password")) {
+					txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 22));
 					txtPassword.setText("Password");
 				passwordlbl.setVisible(false);
 				txtPassword.setEchoChar((char)0); 

@@ -28,6 +28,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.Insets;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.regex.*;
+import javax.swing.*;
 
 
 public class SignUp {
@@ -106,21 +110,32 @@ public class SignUp {
 		String mail = txtEmail.getText();
 		String pass1 = String.valueOf(textPass.getPassword());
 		String pass2 = String.valueOf(textreppass.getPassword());
-		
-	
-		if(sName.trim().equals("") || uName.trim().equals("")|| mail.trim().equals("")|| pass1.trim().equals("") || pass2.trim().equals("")){
-			 JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty","Empty Fields",2);
+
+		String email = "^[^@\\s]+@[^@\\s\\.]+\\.[^@\\.\\s]+$";
+		Pattern pattern = Pattern.compile(email, Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(txtEmail.getText());		
+
+		if (sName.trim().equals("") || uName.trim().equals("")|| mail.trim().equals("")|| pass1.trim().equals("") || pass2.trim().equals("")){
+			 JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty", "Empty Fields", 2);
 	            return false;
-		}else if(!pass1.equals(pass2)) {
-			JOptionPane.showMessageDialog(null, "Password Doesn't Match","Confirm Password",2); 
+		}
+		else if (!matcher.matches()) {
+			mailE.setForeground(new Color(208, 49, 45));
+		}
+		else if (!pass1.equals(pass2)) {
+			JOptionPane.showMessageDialog(null, "Password Doesn't Match", "Confirm Password", 2); 
 			 return false;
-		}else if(Agreechkbox.isSelected() == false){
-			JOptionPane.showMessageDialog(null, "Agree to the Terms and Conditions","Confirm Service Usage",2); 
+		}
+		else if (Agreechkbox.isSelected() == false) {
+			JOptionPane.showMessageDialog(null, "Agree to the Terms and Conditions", "Confirm Service Usage", 2); 
 			return false;
-		}else {
+		}
+		else {
 			return true;
 		}
-		
+		return false;
+	
+
 	}
 	
 	private void initialize() {
