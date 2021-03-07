@@ -1,9 +1,33 @@
 package maingame;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.regex.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JPasswordField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Cursor;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import java.awt.Insets;
 
 
 public class SignUp {
@@ -64,10 +88,12 @@ public class SignUp {
 		String fName = txtname.getText();
 		String uName = txtUsername.getText();
 		String pass1 = String.valueOf(textPass.getPassword());
-	
+		String mail = txtEmail.getText();
+		
 		id1.setFname(fName);
 		id1.setUname(uName);
 		id1.setpass1(pass1);
+		id1.setemail(mail);
 	}
 	
 	
@@ -81,29 +107,20 @@ public class SignUp {
 		String pass1 = String.valueOf(textPass.getPassword());
 		String pass2 = String.valueOf(textreppass.getPassword());
 		
-		String email = "^[^@\\s]+@[^@\\s\\.]+\\.[^@\\.\\s]+$";
-		Pattern pattern = Pattern.compile(email, Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(txtEmail.getText());		
 	
-		if (sName.trim().equals("") || uName.trim().equals("")|| mail.trim().equals("")|| pass1.trim().equals("") || pass2.trim().equals("")){
-			 JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty", "Empty Fields", 2);
+		if(sName.trim().equals("") || uName.trim().equals("")|| mail.trim().equals("")|| pass1.trim().equals("") || pass2.trim().equals("")){
+			 JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty","Empty Fields",2);
 	            return false;
-		}
-		else if (!matcher.matches()) {
-			mailE.setForeground(new Color(208, 49, 45));
-		}
-		else if (!pass1.equals(pass2)) {
-			JOptionPane.showMessageDialog(null, "Password Doesn't Match", "Confirm Password", 2); 
+		}else if(!pass1.equals(pass2)) {
+			JOptionPane.showMessageDialog(null, "Password Doesn't Match","Confirm Password",2); 
 			 return false;
-		}
-		else if (Agreechkbox.isSelected() == false) {
-			JOptionPane.showMessageDialog(null, "Agree to the Terms and Conditions", "Confirm Service Usage", 2); 
+		}else if(Agreechkbox.isSelected() == false){
+			JOptionPane.showMessageDialog(null, "Agree to the Terms and Conditions","Confirm Service Usage",2); 
 			return false;
-		}
-		else {
+		}else {
 			return true;
 		}
-		return false;
+		
 	}
 	
 	private void initialize() {
@@ -230,7 +247,7 @@ public class SignUp {
 		txtUsername.setColumns(10);
 		
 		//Email Label and TextField ----------------------------------------------
-		   	mailE = new JLabel("Email");
+		   mailE = new JLabel("Email");
 			mailE.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 			mailE.setForeground(new Color(255, 181, 0));
 			mailE.setVisible(false);
@@ -373,11 +390,13 @@ public class SignUp {
 		SignUpbtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+			
 					if(checkFields()) {
 						setStuff();
 						JOptionPane.showMessageDialog(null, "Account Registered!");
 						callLogin();
 					}
+				
 			}
 		});
 		Image img2 = new ImageIcon(this.getClass().getResource("/Ellipse60p.png")).getImage();

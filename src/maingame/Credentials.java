@@ -5,7 +5,7 @@ public class Credentials {
 	   private String Fname;
 	   private  String Uname;
 	   private  String pass1;
-	
+	   private  String email;
 	   
 	    public void setFname(String Fname){
 	        this.Fname = Fname;
@@ -17,6 +17,10 @@ public class Credentials {
 	    }
 	    public void setpass1(String pass1){
 	        this.pass1 = pass1;
+	       
+	    }
+	    public void setemail(String email){
+	        this.email = email;
 	       
 	    }
 	   
@@ -33,7 +37,12 @@ public class Credentials {
 	    public String getpass1(){
 	    	
 	        return pass1;
-	    //	}
+	   
+	    }
+	    public String getemail(){
+	    	
+	        return email;
+	    
 	    }
 	   
 }
