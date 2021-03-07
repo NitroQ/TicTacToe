@@ -6,6 +6,14 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,16 +27,17 @@ import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.awt.Cursor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-
+import java.util.Random;
 
 public class Login {
 	
 	// Set Global Variables ------------------------------------------
 	Credentials id1;
-	private ArrayList<String> user, pass, name,email;
+	private ArrayList<String> user, pass, name, email;
 	public JFrame frame;
 	private JTextField txtUsername;
 	private JPasswordField txtPassword;
@@ -52,8 +61,8 @@ public class Login {
 	 * Create the application.
 	 */
 	public Login(Credentials id) {
-		
 		// initializes Credentials.java and/or receive its data ----------------------------------
+		
 		id1 = id;
 		setData();
 		initialize();
@@ -71,7 +80,7 @@ public class Login {
 		}
 	}
 	
-	public int UserFind(String name) {
+	private int UserFind(String name) {
 		int b = 0;
 		for (int i = 0; i < 2; i++) {
 		    if(user.get(i).contains(name)) 
@@ -121,7 +130,46 @@ public class Login {
 		}
 	
 	}
-	
+	private String forgotPass(String email) {
+		  final String user="tictactoeprojectjava@gmail.com";
+		  final String password="penge4nagrade";
+		  
+		  String to= email;
+		  
+		  Random r = new Random();
+	      String rand = String.valueOf(r.nextInt((2 - 0) + 1) + 0);
+	      
+		   //Get the session object  
+		   Properties props = new Properties();  
+		   props.put("mail.smtp.host", "smtp.gmail.com");
+	        props.put("mail.smtp.port", "465");
+	        props.put("mail.smtp.auth", "true");
+	        props.put("mail.smtp.socketFactory.port", "465");
+	        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		     
+		   Session session = Session.getDefaultInstance(props,  
+		    new javax.mail.Authenticator() {  
+		      protected PasswordAuthentication getPasswordAuthentication() {  
+		    return new PasswordAuthentication(user,password);  
+		      }  
+		    });  
+		  
+		   //Compose the message  
+		    try {  
+		     MimeMessage message = new MimeMessage(session);  
+		     message.setFrom(new InternetAddress(user));  
+		     message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));  
+		     message.setSubject("Forgot Password");  
+		     message.setText("Your Recovery Code is: " + rand);  
+		       
+		    //send the message  
+		     Transport.send(message);  
+		   
+		     } catch (MessagingException e) {
+		    	 e.printStackTrace();
+		    	 }  
+		    return rand;
+	}
 	
 	
 	/**
@@ -309,12 +357,36 @@ public class Login {
 		txtPassword.setBounds(405, 260, 322, 45);
 		frame.getContentPane().add(txtPassword);
 		
+		//Forgot Password-----------------------------------------------------
+		JLabel lblNewLabel = new JLabel("Forgot Password?");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblNewLabel.setForeground(new Color(208, 49, 45));
+		        String m = JOptionPane.showInputDialog("Input Account Email: ");
+		        String c = forgotPass(m);
+		        String d = JOptionPane.showInputDialog("Input Code: ");
+		        
+		        if(c.equals(d)) {
+		        	Game tictac = new Game();
+					tictac.frame.setVisible(true);
+					frame.dispose();
+		        }
+			}
+		});
+		lblNewLabel.setBounds(404, 321, 161, 28);
+		lblNewLabel.setForeground(new Color(255, 181, 0));
+		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
+		frame.getContentPane().add(lblNewLabel);
+		
 		// Background Image --------------------------------------------------
 		JLabel background = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/LoginSmall.png")).getImage();
 		background.setIcon(new ImageIcon(img));
 		background.setBounds(0, 0, 800, 484);
 		frame.getContentPane().add(background);
+		
+		
 		
 		
 		
