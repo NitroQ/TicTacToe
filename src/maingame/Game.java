@@ -307,7 +307,7 @@ public class Game {
 		privacy.setFocusPainted(false);
 		privacy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				openWebPage("https://www.google.com/");
+				openWebPage("https://sites.google.com/view/tictactoeproject/privacy-policy?authuser=0");
 			}
 		});
 		privacy.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
@@ -332,7 +332,7 @@ public class Game {
 		terms.setFocusPainted(false);
 		terms.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				openWebPage("https://www.google.com/");
+				openWebPage("https://sites.google.com/view/tictactoeproject/terms?authuser=0");
 			}
 		});
 		terms.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
