@@ -116,6 +116,7 @@ public class Login {
 			JOptionPane.showMessageDialog(null, "Username/Password Doesn't Match","Check Username/Password",2); 
 			 return false;
 		}else {
+			id1.setFname(name.get(userD));
 			return true;
 		}
 	
