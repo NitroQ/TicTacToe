@@ -65,7 +65,7 @@ public class Login {
 		email = new ArrayList<String>();
 		
 		user.add("Frank"); pass.add("frank"); name.add("Frank Vincent"); email.add("frankgesmundo10@gmail.com");
-		user.add("Gabby"); pass.add("gab123"); name.add("Gabrille"); email.add("frankgesmundo10@gmail.com");
+		user.add("Gabby"); pass.add("gab123"); name.add("Gabrille"); email.add("gabbydavid408@gmail.com");
 		if(!id1.equals(null)) {
 		user.add(id1.getUname()); pass.add(id1.getpass1()); name.add(id1.getFname()); email.add(id1.getemail());
 		}
