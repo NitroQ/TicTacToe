@@ -7,7 +7,7 @@ import javax.swing.border.MatteBorder;
 
 
 public class Game {
-	JFrame frame_1;
+	JFrame frame;
 	private JPanel panel;
 	private JButton[][] board;
 	private boolean hasWinner;
@@ -18,12 +18,13 @@ public class Game {
 	private JMenuItem twoplayer, AI;
 	private String currentPlayer;
 	private JLabel lblNewLabel;
-	private JButton btnNewButton_1;
 	private JButton helpbutton;
 	private JButton privacy;
 	private JButton terms;
 	private JLabel logomenu;
-	private JLabel playerplaying;
+	private JButton newGamebtn;
+	private JLabel newGamelbl;
+	private JLabel coming;
 
 	/**
 	 * Launch the application.
@@ -33,7 +34,7 @@ public class Game {
 			public void run() {
 				try {
 					Game window = new Game();
-					window.frame_1.setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,19 +53,19 @@ public class Game {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame_1 = new JFrame();
+		frame = new JFrame();
 		panel = new JPanel(new GridLayout(3, 3));
 		panel.setLocation(307, 61);
 		panel.setSize(779, 558);
-		frame_1.getContentPane().add(panel);
-		frame_1.setTitle("TIC TAC TOE");
-		frame_1.setResizable(false);
-		frame_1.getContentPane().setBackground(new Color(217, 217, 217));
-		frame_1.setUndecorated(true);
-		frame_1.setBounds(100, 100, 1096, 630);
-		frame_1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame_1.setLocationRelativeTo(null);
-		frame_1.getContentPane().setLayout(null);
+		frame.getContentPane().add(panel);
+		frame.setTitle("TIC TAC TOE");
+		frame.setResizable(false);
+		frame.getContentPane().setBackground(new Color(217, 217, 217));
+		frame.setUndecorated(true);
+		frame.setBounds(100, 100, 1096, 630);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.getContentPane().setLayout(null);
 		
 		currentPlayer = "X"; 
 		board = new JButton[3][3];
@@ -103,7 +104,7 @@ public class Game {
 		exitbutton.setBackground(new Color(255, 181, 0));
 		exitbutton.setBorderPainted(false);
 		exitbutton.setBounds(1044, 10, 42, 30);
-		frame_1.getContentPane().add(exitbutton);
+		frame.getContentPane().add(exitbutton);
 		
 		JButton minibutton = new JButton("_");
 		minibutton.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -122,7 +123,7 @@ public class Game {
 		minibutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		minibutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame_1.setState(JFrame.ICONIFIED);
+				frame.setState(JFrame.ICONIFIED);
 			}
 		});
 		minibutton.setFocusPainted(false);
@@ -131,7 +132,7 @@ public class Game {
 		minibutton.setBackground(new Color(255, 181, 0));
 		minibutton.setBorderPainted(false);
 		minibutton.setBounds(998, 10, 42, 30);
-		frame_1.getContentPane().add(minibutton);
+		frame.getContentPane().add(minibutton);
 		
 		menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(62, 62, 62));
@@ -153,13 +154,18 @@ public class Game {
 		file.setContentAreaFilled(false);
 
 		newGame = new JMenuItem("New Game");
+		KeyStroke ctrlN = KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask());
+		newGame.setAccelerator(ctrlN);
 		newGame.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				resetBoard(); 
 			}
 		});
+		
 		quit = new JMenuItem("Quit");
+		KeyStroke ctrlW = KeyStroke.getKeyStroke(KeyEvent.VK_W, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask());
+		quit.setAccelerator(ctrlW);
 		quit.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		quit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -220,7 +226,7 @@ public class Game {
 		mode.add(twoplayer);
 		mode.add(AI);
 		menuBar.add(mode);
-		frame_1.getContentPane().add(menuBar);
+		frame.getContentPane().add(menuBar);
 		
 		helpbutton = new JButton("HELP");
 		helpbutton.addMouseListener(new MouseAdapter() {
@@ -245,54 +251,6 @@ public class Game {
 		helpbutton.setBorderPainted(false);
 		menuBar.add(helpbutton);
 		
-		JButton logoutbtn = new JButton("");
-		logoutbtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		logoutbtn.setIcon(new ImageIcon(Game.class.getResource("/logout.png")));
-		logoutbtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
-				if(result == JOptionPane.YES_OPTION){
-					Credentials cd = new Credentials();
-					Login in = new Login(cd);
-					in.frame.setVisible(true);
-					frame_1.dispose();
-				}     
-			}
-		});
-		logoutbtn.setFocusPainted(false);
-		logoutbtn.setContentAreaFilled(false);
-		logoutbtn.setBorderPainted(false);
-		logoutbtn.setBounds(31, 490, 111, 82);
-		frame_1.getContentPane().add(logoutbtn);
-		
-		JButton newGamebtn = new JButton("");
-		newGamebtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		newGamebtn.setIcon(new ImageIcon(Game.class.getResource("/newgame.png")));
-		newGamebtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				resetBoard();
-			}
-		});
-		newGamebtn.setFocusPainted(false);
-		newGamebtn.setContentAreaFilled(false);
-		newGamebtn.setBorderPainted(false);
-		newGamebtn.setBounds(152, 490, 117, 94);
-		frame_1.getContentPane().add(newGamebtn);		
-		
-		btnNewButton_1 = new JButton("");
-		btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton_1.setIcon(new ImageIcon(Game.class.getResource("/quitbtn.png")));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		btnNewButton_1.setFocusPainted(false);
-		btnNewButton_1.setContentAreaFilled(false);
-		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.setBounds(31, 421, 111, 50);
-		frame_1.getContentPane().add(btnNewButton_1);
-		
 		privacy = new JButton("Privacy");
 		privacy.addMouseListener(new MouseAdapter() {
 			@Override
@@ -314,7 +272,7 @@ public class Game {
 		privacy.setContentAreaFilled(false);
 		privacy.setBorderPainted(false);
 		privacy.setBounds(0, 596, 83, 23);
-		frame_1.getContentPane().add(privacy);
+		frame.getContentPane().add(privacy);
 		
 		terms = new JButton("Terms");
 		terms.setHorizontalAlignment(SwingConstants.LEADING);
@@ -339,13 +297,75 @@ public class Game {
 		terms.setContentAreaFilled(false);
 		terms.setBorderPainted(false);
 		terms.setBounds(70, 596, 77, 23);
-		frame_1.getContentPane().add(terms);
+		frame.getContentPane().add(terms);
+		
+		newGamelbl = new JLabel("NEW GAME");
+		newGamelbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				resetBoard();
+			}
+		});
+		newGamelbl.setFont(new Font("Luckiest Guy", Font.PLAIN, 20));
+		newGamelbl.setBounds(197, 79, 100, 23);
+		frame.getContentPane().add(newGamelbl);
+		
+		newGamebtn = new JButton("O");
+		newGamebtn.setFocusPainted(false);
+		newGamebtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetBoard();
+			}
+		});
+		newGamebtn.setBorderPainted(false);
+		newGamebtn.setContentAreaFilled(false);
+		newGamebtn.setVerticalAlignment(SwingConstants.BOTTOM);
+		newGamebtn.setFont(new Font("Luckiest Guy", Font.PLAIN, 55));
+		newGamebtn.setBounds(133, 61, 77, 69);
+		frame.getContentPane().add(newGamebtn);
+		
+		JLabel logoutlbl = new JLabel("LOG OUT");
+		logoutlbl.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
+				if(result == JOptionPane.YES_OPTION){
+					Credentials cd = new Credentials();
+					Login in = new Login(cd);
+					in.frame.setVisible(true);
+					frame.dispose();
+				}
+			}
+		});
+		logoutlbl.setFont(new Font("Luckiest Guy", Font.PLAIN, 20));
+		logoutlbl.setBounds(52, 79, 90, 23);
+		frame.getContentPane().add(logoutlbl);
+		
+		JButton logoutbtn = new JButton("X");
+		logoutbtn.setFocusPainted(false);
+		logoutbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
+				if(result == JOptionPane.YES_OPTION) {
+					Credentials cd = new Credentials();
+					Login in = new Login(cd);
+					in.frame.setVisible(true);
+					frame.dispose();
+				}     
+			}
+		});
+		logoutbtn.setBorderPainted(false);
+		logoutbtn.setContentAreaFilled(false);
+		logoutbtn.setVerticalAlignment(SwingConstants.BOTTOM);
+		logoutbtn.setFont(new Font("Luckiest Guy", Font.PLAIN, 55));
+		logoutbtn.setBounds(0, 61, 67, 69);
+		frame.getContentPane().add(logoutbtn);
 		
 		lblNewLabel = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/back game.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 1096, 630);
-		frame_1.getContentPane().add(lblNewLabel);
+		frame.getContentPane().add(lblNewLabel);
 		
 	}
 	
@@ -405,6 +425,10 @@ public class Game {
 			}
 		}
 	}
+	
+//	private void Draw() {
+//		if ()
+//	}
 	
 	private void togglePlayer() {
 		if (currentPlayer.equals("X"))

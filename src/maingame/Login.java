@@ -187,7 +187,7 @@ public class Login {
 				if(checkFields()) {
 					eraseMem();
 					Game tictac = new Game();
-					tictac.frame_1.setVisible(true);
+					tictac.frame.setVisible(true);
 					frame.dispose();
 				}
 			}
@@ -205,7 +205,7 @@ public class Login {
 				if(checkFields()) {
 					eraseMem();
 					Game tictac = new Game();
-					tictac.frame_1.setVisible(true);
+					tictac.frame.setVisible(true);
 					frame.dispose();
 				}
 			}
