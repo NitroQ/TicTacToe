@@ -27,25 +27,26 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.Insets;
 
 
 public class SignUp {
 
-    
+    // Global Variable declaration ----------------------------------------------
 	Credentials id1;
 	public JFrame frame;
+	private JTextField txtname;
 	private JTextField txtUsername;
-	private JTextField txtUsername_1;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
+	private JPasswordField textPass;
+	private JPasswordField textreppass;
 	private JTextField txtEmail;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
-	private JLabel lblNewLabel_4;
-	private JLabel lblNewLabel_5;
-	private JLabel lblNewLabel_6;
-	private JCheckBox chkbox;
+	private JLabel Loginbtn;
+	private JLabel pName;
+	private JLabel uName;
+	private JLabel mailE;
+	private JLabel PasswordLbl;
+	private JLabel RepPasswordlbl;
+	private JCheckBox Agreechkbox;
 	
 
 	public static void main(String[] args) {
@@ -65,12 +66,16 @@ public class SignUp {
 	 * Create the application.
 	 */
 	public SignUp(Credentials id) {
+		
+		// initializes Credentials.java and/or receive its data ----------------------------------
 		id1 =id;
 		initialize();
 	}
 	
 
 	public void callLogin() {
+		
+		// Calls Login Jframe Method ---------------------------------------------------------
 		Login lg = new Login(id1);
 		lg.frame.setVisible(true);
 		frame.dispose();
@@ -79,9 +84,10 @@ public class SignUp {
 	
 	public void setStuff() {
 		
-		String fName = txtUsername.getText();
-		String uName = txtUsername_1.getText();
-		String pass1 = String.valueOf(passwordField.getPassword());
+		// Sends data to Credentials to save user data -------------------------------------------
+		String fName = txtname.getText();
+		String uName = txtUsername.getText();
+		String pass1 = String.valueOf(textPass.getPassword());
 	
 		id1.setFname(fName);
 		id1.setUname(uName);
@@ -89,12 +95,15 @@ public class SignUp {
 	}
 	
 	
-	public boolean checkFields(){
-		String sName = txtUsername.getText();
-		String uName = txtUsername_1.getText();
+	public boolean checkFields(){ 
+		/* 
+		 * Checks all Fields if its empty and matches required format ------------------------------------
+		 */
+		String sName = txtname.getText();
+		String uName = txtUsername.getText();
 		String mail = txtEmail.getText();
-		String pass1 = String.valueOf(passwordField.getPassword());
-		String pass2 = String.valueOf(passwordField_1.getPassword());
+		String pass1 = String.valueOf(textPass.getPassword());
+		String pass2 = String.valueOf(textreppass.getPassword());
 		
 	
 		if(sName.trim().equals("") || uName.trim().equals("")|| mail.trim().equals("")|| pass1.trim().equals("") || pass2.trim().equals("")){
@@ -103,7 +112,7 @@ public class SignUp {
 		}else if(!pass1.equals(pass2)) {
 			JOptionPane.showMessageDialog(null, "Password Doesn't Match","Confirm Password",2); 
 			 return false;
-		}else if(chkbox.isSelected() == false){
+		}else if(Agreechkbox.isSelected() == false){
 			JOptionPane.showMessageDialog(null, "Agree to the Terms and Conditions","Confirm Service Usage",2); 
 			return false;
 		}else {
@@ -113,10 +122,12 @@ public class SignUp {
 	}
 	
 	private void initialize() {
+
+		// JFrame location -------------------------------------------------------
 		Dimension ss = Toolkit.getDefaultToolkit ().getScreenSize ();
 		Dimension frameSize = new Dimension (900, 824);
 	
-		
+		// JFrame initialization -------------------------------------------------
 		frame = new JFrame();
 		frame.setUndecorated(true);
 		frame.getContentPane().setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
@@ -125,222 +136,236 @@ public class SignUp {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("X");
-		btnNewButton.addActionListener(new ActionListener() {
+		//Close Button -----------------------------------------------------------
+		JButton Close = new JButton("X");
+		Close.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		Close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 System.exit(0);
 			}
 		});
-		btnNewButton.setFocusPainted(false);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnNewButton.setBorder(new RoundedBorder(15));
-		btnNewButton.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBounds(827, 27, 50, 28);
-		frame.getContentPane().add(btnNewButton);
+		Close.setFocusPainted(false);
+		Close.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 15));
+		Close.setBackground(new Color(62, 62, 62));
+		Close.setForeground(new Color(255, 255, 255));
+		Close.setBounds(845, 11, 45, 30);
+		frame.getContentPane().add(Close);
 		
-		lblNewLabel_2 = new JLabel("Player Name");
-		lblNewLabel_2.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
-		lblNewLabel_2.setForeground(new Color(255, 181, 0));
-		lblNewLabel_2.setBounds(450, 153, 142, 28);
-		lblNewLabel_2.setVisible(false);
-		frame.getContentPane().add(lblNewLabel_2);
+		//Minimize Button --------------------------------------------------------
+		JButton Mini = new JButton("_");
+		Mini.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		Mini.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setState(JFrame.ICONIFIED);
+			}
+		});
+		Mini.setFocusPainted(false);
+		Mini.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 15));
+		Mini.setBackground(new Color(62, 62, 62));
+		Mini.setForeground(new Color(255, 255, 255));
+		Mini.setBounds(797, 11, 45, 30);
+		frame.getContentPane().add(Mini);
 		
 		
-		txtUsername = new JTextField();
-		txtUsername.setText("Player Name");
-		txtUsername.addFocusListener(new FocusAdapter() {
+		
+		// *Sign up Form* 
+		
+		// Player Name Label and TextField--------------------------------------
+		pName = new JLabel("Player Name");
+		pName.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		pName.setForeground(new Color(255, 181, 0));
+		pName.setBounds(450, 153, 142, 28);
+		pName.setVisible(false);
+		frame.getContentPane().add(pName);
+		
+		
+		txtname = new JTextField();
+		txtname.setText("Player Name");
+		txtname.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (txtUsername.getText().trim().equals("") || 
-						txtUsername.getText().trim().toLowerCase().equals("player name")) {
-				txtUsername.setText("");
+				if (txtname.getText().trim().equals("") || 
+						txtname.getText().trim().toLowerCase().equals("player name")) {
+				txtname.setText("");
 				}
-				lblNewLabel_2.setVisible(true);
+				pName.setVisible(true);
 
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (txtUsername.getText().trim().equals("") || 
-						txtUsername.getText().trim().toLowerCase().equals("player name")) {
-				txtUsername.setText("Player Name");
-				lblNewLabel_2.setVisible(false);
+				if (txtname.getText().trim().equals("") || 
+						txtname.getText().trim().toLowerCase().equals("player name")) {
+				txtname.setText("Player Name");
+				pName.setVisible(false);
 				}
 				
 			}
 		});
+		txtname.setBorder(null);
+		txtname.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		txtname.setBackground(Color.WHITE);
+		txtname.setBounds(456, 189, 363, 43);
+		frame.getContentPane().add(txtname);
+		txtname.setColumns(10);
 		
+		//Username label and Text Field ---------------------------------------
+		uName = new JLabel("Username");
+		uName.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		uName.setForeground(new Color(255, 181, 0));
+		uName.setVisible(false);
+		uName.setBounds(450, 243, 126, 28);
+		frame.getContentPane().add(uName);
 		
-		
+		txtUsername = new JTextField();
+		txtUsername.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtUsername.getText().trim().equals("") || 
+						txtUsername.getText().trim().toLowerCase().equals("username")) {
+				txtUsername.setText("");
+				
+				}
+				uName.setVisible(true);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtUsername.getText().trim().equals("") || 
+						txtUsername.getText().trim().toLowerCase().equals("username")) {
+				txtUsername.setText("Username");
+				uName.setVisible(false);
+				}
+			}
+		});
+		txtUsername.setText("Username");
 		txtUsername.setBorder(null);
 		txtUsername.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 		txtUsername.setBackground(Color.WHITE);
-		txtUsername.setBounds(456, 189, 363, 43);
+		txtUsername.setBounds(456, 274, 363, 43);
 		frame.getContentPane().add(txtUsername);
 		txtUsername.setColumns(10);
 		
-		lblNewLabel_3 = new JLabel("Username");
-		lblNewLabel_3.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
-		lblNewLabel_3.setForeground(new Color(255, 181, 0));
-		lblNewLabel_3.setVisible(false);
-		lblNewLabel_3.setBounds(450, 243, 126, 28);
-		frame.getContentPane().add(lblNewLabel_3);
-		
-		txtUsername_1 = new JTextField();
-		txtUsername_1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (txtUsername_1.getText().trim().equals("") || 
-						txtUsername_1.getText().trim().toLowerCase().equals("username")) {
-				txtUsername_1.setText("");
-				
+		//Email Label and TextField ----------------------------------------------
+		   mailE = new JLabel("Email");
+			mailE.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+			mailE.setForeground(new Color(255, 181, 0));
+			mailE.setVisible(false);
+			mailE.setBounds(450, 328, 86, 28);
+			frame.getContentPane().add(mailE);
+			
+			txtEmail = new JTextField("");
+			txtEmail.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					if (txtEmail.getText().trim().equals("") || 
+							txtEmail.getText().trim().toLowerCase().equals("email")) {
+						txtEmail.setText("");
+					}
+					mailE.setVisible(true);
 				}
-				lblNewLabel_3.setVisible(true);
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtUsername_1.getText().trim().equals("") || 
-						txtUsername_1.getText().trim().toLowerCase().equals("username")) {
-				txtUsername_1.setText("Username");
-				lblNewLabel_3.setVisible(false);
+				@Override
+				public void focusLost(FocusEvent e) {
+					if (txtEmail.getText().trim().equals("") || 
+							txtEmail.getText().trim().toLowerCase().equals("email")) {
+						txtEmail.setText("Email");
+					mailE.setVisible(false);
+					}
 				}
-			}
-		});
-		txtUsername_1.setText("Username");
-		txtUsername_1.setBorder(null);
-		txtUsername_1.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
-		txtUsername_1.setBackground(Color.WHITE);
-		txtUsername_1.setBounds(456, 274, 363, 43);
-		frame.getContentPane().add(txtUsername_1);
-		txtUsername_1.setColumns(10);
-		
-		lblNewLabel_6 = new JLabel("Repeat Password");
-		lblNewLabel_6.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
-		lblNewLabel_6.setForeground(new Color(255, 181, 0));
-		lblNewLabel_6.setVisible(false);
-		lblNewLabel_6.setBounds(450, 498, 257, 33);
-		frame.getContentPane().add(lblNewLabel_6);
-		
-		passwordField_1 = new JPasswordField("Repeat Password");
-		passwordField_1.setEchoChar((char)0);
-		passwordField_1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (String.valueOf(passwordField_1.getPassword()).trim().equals("") || 
-						String.valueOf(passwordField_1.getPassword()).trim().toLowerCase().equals("repeat password")) {
-					passwordField_1.setText("");
+			});
+			txtEmail.setText("Email");
+			txtEmail.setBorder(null);
+			txtEmail.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+			txtEmail.setBackground(Color.WHITE);
+			txtEmail.setBounds(456, 358, 363, 43);
+			frame.getContentPane().add(txtEmail);
+			txtEmail.setColumns(10);
+			
+			// Password Label and TextField ---------------------------------------------------
+			PasswordLbl = new JLabel("Password");
+			PasswordLbl.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+			PasswordLbl.setForeground(new Color(255, 181, 0));
+			PasswordLbl.setVisible(false);
+			PasswordLbl.setBounds(450, 412, 120, 28);
+			frame.getContentPane().add(PasswordLbl);
+			
+			textPass = new JPasswordField("Password");
+			textPass.setEchoChar((char)0);
+			textPass.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					if (String.valueOf(textPass.getPassword()).trim().equals("") || 
+							String.valueOf(textPass.getPassword()).trim().toLowerCase().equals("password")) {
+					textPass.setText("");
+					}
+					PasswordLbl.setVisible(true);
+					textPass.setEchoChar((char)0);
 					
 				}
-				lblNewLabel_6.setVisible(true);
-				passwordField_1.setEchoChar((char)0);
 				
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (String.valueOf(passwordField_1.getPassword()).trim().equals("") || 
-						String.valueOf(passwordField_1.getPassword()).trim().toLowerCase().equals("repeat password")) {
-					passwordField_1.setText("Repeat Password");
-				lblNewLabel_6.setVisible(false);
-				passwordField_1.setEchoChar((char)0); 
-				}else if(!String.valueOf(passwordField_1.getPassword()).trim().equals("") || 
-						!String.valueOf(passwordField_1.getPassword()).trim().toLowerCase().equals("repeat password")){
-					passwordField_1.setEchoChar('*'); 
+				@Override
+				public void focusLost(FocusEvent e) {
+					if (String.valueOf(textPass.getPassword()).trim().equals("") || 
+							String.valueOf(textPass.getPassword()).trim().toLowerCase().equals("password")) {
+						textPass.setText("Password");
+					PasswordLbl.setVisible(false);
+					textPass.setEchoChar((char)0); 
+					}else if(!String.valueOf(textPass.getPassword()).trim().equals("") || 
+							!String.valueOf(textPass.getPassword()).trim().toLowerCase().equals("password")){
+						textPass.setEchoChar('*'); 
+					}
+					
 				}
-			}
-		});
-		passwordField_1.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
-		passwordField_1.setBorder(null);
-		passwordField_1.setBackground(Color.WHITE);
-		passwordField_1.setBounds(456, 532, 358, 43);
-		frame.getContentPane().add(passwordField_1);
+			});
+			textPass.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+			textPass.setBorder(null);
+			textPass.setBackground(Color.WHITE);
+			textPass.setBounds(456, 444, 363, 43);
+			frame.getContentPane().add(textPass);
 		
-	    lblNewLabel_4 = new JLabel("Email");
-		lblNewLabel_4.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
-		lblNewLabel_4.setForeground(new Color(255, 181, 0));
-		lblNewLabel_4.setVisible(false);
-		lblNewLabel_4.setBounds(450, 328, 86, 28);
-		frame.getContentPane().add(lblNewLabel_4);
+		// Repeat Password label and Textfield ---------------------------------------------------------
+		RepPasswordlbl = new JLabel("Repeat Password");
+		RepPasswordlbl.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		RepPasswordlbl.setForeground(new Color(255, 181, 0));
+		RepPasswordlbl.setVisible(false);
+		RepPasswordlbl.setBounds(450, 498, 257, 33);
+		frame.getContentPane().add(RepPasswordlbl);
 		
-		txtEmail = new JTextField("");
-		txtEmail.addFocusListener(new FocusAdapter() {
+		textreppass = new JPasswordField("Repeat Password");
+		textreppass.setEchoChar((char)0);
+		textreppass.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (txtEmail.getText().trim().equals("") || 
-						txtEmail.getText().trim().toLowerCase().equals("email")) {
-					txtEmail.setText("");
+				if (String.valueOf(textreppass.getPassword()).trim().equals("") || 
+						String.valueOf(textreppass.getPassword()).trim().toLowerCase().equals("repeat password")) {
+					textreppass.setText("");
+					
 				}
-				lblNewLabel_4.setVisible(true);
+				RepPasswordlbl.setVisible(true);
+				textreppass.setEchoChar((char)0);
+				
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (txtEmail.getText().trim().equals("") || 
-						txtEmail.getText().trim().toLowerCase().equals("email")) {
-					txtEmail.setText("Email");
-				lblNewLabel_4.setVisible(false);
+				if (String.valueOf(textreppass.getPassword()).trim().equals("") || 
+						String.valueOf(textreppass.getPassword()).trim().toLowerCase().equals("repeat password")) {
+					textreppass.setText("Repeat Password");
+				RepPasswordlbl.setVisible(false);
+				textreppass.setEchoChar((char)0); 
+				}else if(!String.valueOf(textreppass.getPassword()).trim().equals("") || 
+						!String.valueOf(textreppass.getPassword()).trim().toLowerCase().equals("repeat password")){
+					textreppass.setEchoChar('*'); 
 				}
 			}
 		});
-		txtEmail.setText("Email");
-		txtEmail.setBorder(null);
-		txtEmail.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
-		txtEmail.setBackground(Color.WHITE);
-		txtEmail.setBounds(456, 358, 363, 43);
-		frame.getContentPane().add(txtEmail);
-		txtEmail.setColumns(10);
+		textreppass.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		textreppass.setBorder(null);
+		textreppass.setBackground(Color.WHITE);
+		textreppass.setBounds(456, 532, 358, 43);
+		frame.getContentPane().add(textreppass);
 		
-		lblNewLabel_5 = new JLabel("Password");
-		lblNewLabel_5.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
-		lblNewLabel_5.setForeground(new Color(255, 181, 0));
-		lblNewLabel_5.setVisible(false);
-		lblNewLabel_5.setBounds(450, 412, 120, 28);
-		frame.getContentPane().add(lblNewLabel_5);
 		
-		passwordField = new JPasswordField("Password");
-		passwordField.setEchoChar((char)0);
-		passwordField.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (String.valueOf(passwordField.getPassword()).trim().equals("") || 
-						String.valueOf(passwordField.getPassword()).trim().toLowerCase().equals("password")) {
-				passwordField.setText("");
-				}
-				lblNewLabel_5.setVisible(true);
-				passwordField.setEchoChar((char)0);
-				
-			}
-			
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (String.valueOf(passwordField.getPassword()).trim().equals("") || 
-						String.valueOf(passwordField.getPassword()).trim().toLowerCase().equals("password")) {
-					passwordField.setText("Password");
-				lblNewLabel_5.setVisible(false);
-				passwordField.setEchoChar((char)0); 
-				}else if(!String.valueOf(passwordField.getPassword()).trim().equals("") || 
-						!String.valueOf(passwordField.getPassword()).trim().toLowerCase().equals("password")){
-					passwordField.setEchoChar('*'); 
-				}
-				
-			}
-		});
-		passwordField.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
-		passwordField.setBorder(null);
-		passwordField.setBackground(Color.WHITE);
-		passwordField.setBounds(456, 444, 363, 43);
-		frame.getContentPane().add(passwordField);
-		
-		chkbox = new JCheckBox("");
-		chkbox.setSelected(false);
-		chkbox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				
-			}
-		});
-		chkbox.setBounds(459, 589, 21, 23);
-		frame.getContentPane().add(chkbox);
-		
-		JLabel lblNewLabel_11 = new JLabel("Sign Up");
-		lblNewLabel_11.addMouseListener(new MouseAdapter() {
+		//Signup Label/Button ---------------------------------------------------
+		JLabel SignupLbl = new JLabel("Sign Up");
+		SignupLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
@@ -352,32 +377,15 @@ public class SignUp {
 
 			}
 		});
-		lblNewLabel_11.setForeground(new Color(255, 181, 0));
-		lblNewLabel_11.setFont(new Font("Luckiest Guy", Font.BOLD, 22));
-		lblNewLabel_11.setBounds(744, 732, 86, 28);
-		frame.getContentPane().add(lblNewLabel_11);
+		SignupLbl.setForeground(new Color(255, 181, 0));
+		SignupLbl.setFont(new Font("Luckiest Guy", Font.PLAIN, 20));
+		SignupLbl.setBounds(739, 727, 86, 28);
+		frame.getContentPane().add(SignupLbl);
 		
-		lblNewLabel_1 = new JLabel("Login");
-		lblNewLabel_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				callLogin();
-			}
-		});
-		lblNewLabel_1.setBounds(732, 76, 114, 43);
-		lblNewLabel_1.setForeground(new Color(0, 0, 0));
-		lblNewLabel_1.setFont(new Font("Luckiest Guy", Font.BOLD, 33));
-		frame.getContentPane().add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_7 = new JLabel("");
-		Image img5 = new ImageIcon(this.getClass().getResource("/TicTac160p.gif")).getImage();
-		lblNewLabel_7.setIcon(new ImageIcon(img5));
-		lblNewLabel_7.setBounds(222, 40, 160, 160);
-		frame.getContentPane().add(lblNewLabel_7);
-		
-		JLabel lblNewLabel_10 = new JLabel("");
-		lblNewLabel_10.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblNewLabel_10.addMouseListener(new MouseAdapter() {
+		// Signup Shape/ Button -------------------------------------------------
+		JLabel SignUpbtn = new JLabel("");
+		SignUpbtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		SignUpbtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			
@@ -389,17 +397,69 @@ public class SignUp {
 				
 			}
 		});
-		Image img2 = new ImageIcon(this.getClass().getResource("/Ellipse 1.png")).getImage();
-		lblNewLabel_10.setIcon(new ImageIcon(img2));
-		lblNewLabel_10.setBounds(744, 650, 165, 82);
-		frame.getContentPane().add(lblNewLabel_10);
+		Image img2 = new ImageIcon(this.getClass().getResource("/Ellipse60p.png")).getImage();
+		SignUpbtn.setIcon(new ImageIcon(img2));
+		SignUpbtn.setBounds(744, 662, 60, 60);
+		frame.getContentPane().add(SignUpbtn);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 23));
-		Image img = new ImageIcon(this.getClass().getResource("/SignUp.png")).getImage();
-		lblNewLabel.setIcon(new ImageIcon(img));
-		lblNewLabel.setBounds(0, 0, 900, 824);
-		frame.getContentPane().add(lblNewLabel);		
+		
+		// Login Tab Label ------------------------------------------------------
+		Loginbtn = new JLabel("Login");
+		Loginbtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		Loginbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				callLogin();
+			}
+		});
+		Loginbtn.setBounds(732, 77, 114, 43);
+		Loginbtn.setForeground(new Color(0, 0, 0));
+		Loginbtn.setFont(new Font("Luckiest Guy", Font.PLAIN, 33));
+		frame.getContentPane().add(Loginbtn);
+		
+		// Agree Label -----------------------------------------------------------
+		JLabel agree = new JLabel("I Agree to The Terms of Service");
+		agree.setForeground(new Color(255, 181, 0));
+		agree.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
+		agree.setBounds(496, 596, 329, 30);
+		frame.getContentPane().add(agree);
+		
+		// Tictac Toe gif -------------------------------------------------------
+		JLabel gifXO = new JLabel("");
+		Image img5 = new ImageIcon(this.getClass().getResource("/TicTac160p.gif")).getImage();
+		gifXO.setIcon(new ImageIcon(img5));
+		gifXO.setBounds(222, 40, 160, 160);
+		frame.getContentPane().add(gifXO);
+		
+		// Agree Checkbox -------------------------------------------------------
+				Agreechkbox = new JCheckBox("");
+				Agreechkbox.setMinimumSize(new Dimension(30, 30));
+				Agreechkbox.setMaximumSize(new Dimension(30, 30));
+				Agreechkbox.setMargin(new Insets(0, 0, 0, 0));
+				Agreechkbox.setSize(new Dimension(10, 10));
+				Agreechkbox.setPreferredSize(new Dimension(30, 30));
+				Agreechkbox.setBackground(new Color(62, 62, 62));
+				Agreechkbox.setSelected(false);
+				Agreechkbox.addItemListener(new ItemListener() {
+					public void itemStateChanged(ItemEvent e) {
+						
+					}
+				});
+				Agreechkbox.setBounds(471, 596, 21, 23);
+				frame.getContentPane().add(Agreechkbox);
+	
+		// Jlabel Background ----------------------------------------------------
+		JLabel Background = new JLabel("");
+		Background.setHorizontalTextPosition(SwingConstants.RIGHT);
+		Background.setFont(new Font("Luckiest Guy", Font.PLAIN, 23));
+		Image img = new ImageIcon(this.getClass().getResource("/SignUp2.png")).getImage();
+		Background.setIcon(new ImageIcon(img));
+		Background.setBounds(0, 0, 900, 824);
+		frame.getContentPane().add(Background);		
+		
+	
+		
+		
 		
 	}
 }

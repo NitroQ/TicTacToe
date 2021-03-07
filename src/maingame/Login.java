@@ -109,8 +109,8 @@ public class Login {
 			}
 		});
 		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setFont(new Font("Luckiest Guy", Font.BOLD, 27));
-		lblNewLabel_1.setBounds(529, 56, 170, 57);
+		lblNewLabel_1.setFont(new Font("Luckiest Guy", Font.PLAIN, 27));
+		lblNewLabel_1.setBounds(534, 56, 170, 57);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("X");
@@ -120,12 +120,25 @@ public class Login {
 			}
 		});
 		btnNewButton.setFocusPainted(false);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnNewButton.setBorder(new RoundedBorder(15));
-		btnNewButton.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBounds(731, 22, 50, 28);
+		btnNewButton.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 15));
+		btnNewButton.setBackground(new Color(62, 62, 62));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBounds(745, 11, 45, 30);
 		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("_");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setState(JFrame.ICONIFIED);
+			}
+		});
+		btnNewButton_1.setFocusPainted(false);
+		btnNewButton_1.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 15));
+		btnNewButton_1.setBackground(new Color(62, 62, 62));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBounds(697, 11, 45, 30);
+		frame.getContentPane().add(btnNewButton_1);
+		
 		
 		JLabel lblNewLabel_3 = new JLabel("Username");
 		lblNewLabel_3.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
@@ -164,7 +177,7 @@ public class Login {
 		txtUsername.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Login");
-		lblNewLabel_5.setFont(new Font("Luckiest Guy", Font.BOLD, 19));
+		lblNewLabel_5.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
 		lblNewLabel_5.setForeground(new Color(255, 181, 0));
 		lblNewLabel_5.addMouseListener(new MouseAdapter() {
 			@Override
@@ -245,6 +258,7 @@ public class Login {
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 800, 484);
 		frame.getContentPane().add(lblNewLabel);
+		
 		
 		
 		
