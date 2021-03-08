@@ -252,7 +252,18 @@ public class Game {
 		});
 		helpbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "INSTRUCTIONS");
+				String html = "<html><body width = '%1s'><h1>RULES FOR TIC-TAC-TOE</h>"
+						+ "<p>1. The game is played on a grid that's 3 squares by 3 squares by default, "
+						+ "but there is the option of changing it to 4 squares by 4 squares. <br><br>"
+						+ "<p>2. You are X, your friend (or the computer) is O. "
+						+ "Players take turns putting their marks in empty squares.<br><br>"
+						+ "<p>3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) "
+						+ "is the winner.<br><br>"
+						+ "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, "
+						+ "the game ends in a tie.";
+				
+				int width = 500;
+				JOptionPane.showMessageDialog(null, String.format(html, width, width));
 			}
 		});
 		helpbutton.setForeground(Color.WHITE);
