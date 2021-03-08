@@ -83,6 +83,7 @@ public class Login {
 		if(!id1.equals(null)) {
 		user.add(id1.getUname()); pass.add(id1.getpass1()); name.add(id1.getFname()); email.add(id1.getemail());
 		}
+		
 	}
 	//Finds the username Index (used for login) -----------------------------------
 	private int UserFind(String name) {
@@ -90,7 +91,6 @@ public class Login {
 		for (int i = 0; i < 2; i++) {
 		    if(user.get(i).contains(name)) 
 		    	b += i;
-		    
 		    }
 		return b;
 	}
@@ -101,7 +101,6 @@ public class Login {
 		if(!id1.equals(null)) {
 			c += id1.getemail();
 		}
-	
 		for (int i = 0; i < 2; i++) {
 		    if(email.get(i).contains(eemail) || c.equals(eemail)) {
 		    	a = true;
@@ -119,11 +118,11 @@ public class Login {
 		
 		int mailIndex = 0;
 		if(credmail.equals(usermail) && !credmail.equals("")) {
-			mailIndex += 2;
+			mailIndex = 2;
 		}else{
 			for (int i = 0; i < 2; i++) {
 		    if(email.get(i).contains(usermail)) 
-		    	mailIndex += i;
+		    	mailIndex = i;
 	  
 		    }
 		}
@@ -228,7 +227,50 @@ public class Login {
 		    return rand;
 	}
 	
-	
+	private void forgotUser(String email) {
+		 //this method emails the user for his username -----------------------------------------
+		
+		//Login email API ---------------------------------------------------
+		  final String primary="tictactoeprojectjava@gmail.com";
+		  final String password="penge4nagrade";
+		  
+		//Sends to: ---------------------------------------------------
+		  String to= email;
+	      
+		   //Get the session variables  -------------------------------
+		   Properties props = new Properties();  
+		   props.put("mail.smtp.host", "smtp.gmail.com");
+	        props.put("mail.smtp.port", "465");
+	        props.put("mail.smtp.auth", "true");
+	        props.put("mail.smtp.socketFactory.port", "465");
+	        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		     
+		   Session session = Session.getDefaultInstance(props,  
+		    new javax.mail.Authenticator() {  
+		      protected PasswordAuthentication getPasswordAuthentication() {  
+		    return new PasswordAuthentication(primary,password);  
+		      }  
+		    });  
+		  
+		   int i = FindUserEmail(email);
+		   //Composing the message --------------------------------------  
+		    try {  
+		     MimeMessage message = new MimeMessage(session);  
+		     message.setFrom(new InternetAddress(primary));  
+		     message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));  
+		     message.setSubject("Forgot Username");  
+		     
+		     message.setText("Your Username is: " + user.get(i));  
+		       
+		    //Send the code -------------------------------------------- 
+		     Transport.send(message);  
+		   
+		     } catch (MessagingException e) {
+		    	 e.printStackTrace();
+		    	 }  
+		    //returns verification code to the method for verification ----------------------------
+		  
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -347,7 +389,7 @@ public class Login {
 				if(checkFields()) {
 					//checks if the user is in the database ------------------
 					if(checkLogin()) {
-					Game tictac = new Game();
+					Game tictac = new Game(id1);
 					tictac.frame.setVisible(true);
 					frame.dispose();
 					}
@@ -368,7 +410,7 @@ public class Login {
 				if(checkFields()) {
 					//checks if the user is in the database ------------------
 					if(checkLogin()) {
-					Game tictac = new Game();
+					Game tictac = new Game(id1);
 					tictac.frame.setVisible(true);
 					frame.dispose();
 					}
@@ -459,31 +501,37 @@ public class Login {
 				lblNewLabel.setText("Forgot Password?");
 			}
 		});
-		lblNewLabel.setBounds(404, 321, 161, 28);
+		lblNewLabel.setBounds(404, 321, 140, 20);
 		lblNewLabel.setForeground(new Color(255, 181, 0));
 		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
 		frame.getContentPane().add(lblNewLabel);
-		
-		JLabel donthave = new JLabel("Don't have an account yet?");
-		donthave.addMouseListener(new MouseAdapter() {
+	
+		//Forgot Username -----------------------------------------------------------------------
+		JLabel lblNewLabel_1 = new JLabel("Forgot Username?");
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			@Override
 			public void mouseClicked(MouseEvent e) {
-				donthave.setForeground(new Color(208, 49, 45));
-				SignUp in = new SignUp(id1);
-				in.frame.setVisible(true);
-				frame.dispose();
+				lblNewLabel_1.setForeground(new Color(208, 49, 45));
+			   String mail = JOptionPane.showInputDialog("Input Account Email: ");
+			   if (FindEmail(mail)) {
+				   	forgotUser(mail);
+			   }else {
+		        	//print if the email does not exist in the database ------------------------------------
+		        	 JOptionPane.showMessageDialog(null, "You are not yet signed up in this email.","User not Found",2);
+		        }
+			   
 			}
-		public void mouseEntered(MouseEvent e) {
-			donthave.setText("<HTML><U>Don't have an account yet?</U></HTML>");
-		}
-		@Override
-		public void mouseExited(MouseEvent e) {
-			donthave.setText("Don't have an account yet?");
-		}
+			public void mouseEntered(MouseEvent e) {
+				lblNewLabel_1.setText("<HTML><U>Forgot Username?</U></HTML>");
+			}
+			public void mouseExited(MouseEvent e) {
+				lblNewLabel_1.setText("Forgot Username?");
+			}
 		});
-		donthave.setForeground(new Color(255, 181, 0));
-		donthave.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
-		donthave.setBounds(404, 346, 212, 28);
-		frame.getContentPane().add(donthave);
+		lblNewLabel_1.setForeground(new Color(255, 181, 0));
+		lblNewLabel_1.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
+		lblNewLabel_1.setBounds(404, 344, 140, 20);
+		frame.getContentPane().add(lblNewLabel_1);
 		
 		// privacy button -----------------------------------------------------------------------------------------------------------------------
 		privacy = new JButton("Privacy");
@@ -570,12 +618,38 @@ public class Login {
 		passvalidation.setVisible(false);
 		frame.getContentPane().add(passvalidation);
 		
+		
+		//Dont have an account yet -------------------------------------------------------------
+		JLabel donthave = new JLabel("Don't have an account yet?");
+		donthave.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				donthave.setForeground(new Color(208, 49, 45));
+				SignUp in = new SignUp(id1);
+				in.frame.setVisible(true);
+				frame.dispose();
+			}
+		public void mouseEntered(MouseEvent e) {
+			donthave.setText("<HTML><U>Don't have an account yet?</U></HTML>");
+		}
+		@Override
+		public void mouseExited(MouseEvent e) {
+			donthave.setText("Don't have an account yet?");
+		}
+		});
+		donthave.setForeground(new Color(255, 181, 0));
+		donthave.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
+		donthave.setBounds(406, 379, 212, 28);
+		frame.getContentPane().add(donthave);
+		
+		
 		// Background Image --------------------------------------------------
 		JLabel background = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/LoginSmall.png")).getImage();
 		background.setIcon(new ImageIcon(img));
 		background.setBounds(0, 0, 800, 484);
 		frame.getContentPane().add(background);
+		
+		
 		
 	}
 

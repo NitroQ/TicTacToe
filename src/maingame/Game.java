@@ -10,6 +10,7 @@ public class Game {
 	
 	// setting global variables -----------------------------------------------------------------------------------------------------------------
 	JFrame frame;
+	Credentials id1;
 	private JPanel panel;
 	private JButton[][] board;
 	private boolean hasWinner;
@@ -27,6 +28,8 @@ public class Game {
 	private JLabel logomenu;
 	private JButton newGamebtn;
 	private JLabel newGamelbl;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
 
 
 	/**
@@ -36,7 +39,7 @@ public class Game {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Game window = new Game();
+					Game window = new Game(null);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +51,8 @@ public class Game {
 	/**
 	 * Create the application.
 	 */
-	public Game() {
+	public Game(Credentials id) {
+		id1 =id;
 		initialize();
 	}
 
@@ -359,7 +363,7 @@ public class Game {
 			}
 		});
 		newGamelbl.setFont(new Font("Luckiest Guy", Font.PLAIN, 20));
-		newGamelbl.setBounds(197, 79, 100, 23);
+		newGamelbl.setBounds(197, 548, 100, 23);
 		frame.getContentPane().add(newGamelbl);
 		
 		// new game button ("O") -----------------------------------------------------------------------------------------------------------------
@@ -374,7 +378,7 @@ public class Game {
 		newGamebtn.setContentAreaFilled(false);
 		newGamebtn.setVerticalAlignment(SwingConstants.BOTTOM);
 		newGamebtn.setFont(new Font("Luckiest Guy", Font.PLAIN, 55));
-		newGamebtn.setBounds(133, 61, 77, 69);
+		newGamebtn.setBounds(133, 530, 77, 69);
 		frame.getContentPane().add(newGamebtn);
 		
 		// logout label ---------------------------------------------------------------------------------------------------------------------------
@@ -392,7 +396,7 @@ public class Game {
 			}
 		});
 		logoutlbl.setFont(new Font("Luckiest Guy", Font.PLAIN, 20));
-		logoutlbl.setBounds(52, 79, 90, 23);
+		logoutlbl.setBounds(55, 548, 90, 23);
 		frame.getContentPane().add(logoutlbl);
 		
 		// logout button ("X") -----------------------------------------------------------------------------------------------------------------
@@ -412,9 +416,29 @@ public class Game {
 		logoutbtn.setBorderPainted(false);
 		logoutbtn.setContentAreaFilled(false);
 		logoutbtn.setVerticalAlignment(SwingConstants.BOTTOM);
-		logoutbtn.setFont(new Font("Luckiest Guy", Font.PLAIN, 55));
-		logoutbtn.setBounds(0, 61, 67, 69);
+		logoutbtn.setFont(new Font("Luckiest Guy", Font.PLAIN, 53));
+		logoutbtn.setBounds(0, 530, 67, 69);
 		frame.getContentPane().add(logoutbtn);
+		
+		lblNewLabel_2 = new JLabel("Welcome,");
+		lblNewLabel_2.setFont(new Font("Luckiest Guy", Font.PLAIN, 25));
+		lblNewLabel_2.setForeground(new Color(255, 181, 0));
+		lblNewLabel_2.setBounds(25, 228, 120, 50);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		lblNewLabel_3 = new JLabel(id1.getFname());
+		lblNewLabel_3.setFont(new Font("Luckiest Guy", Font.PLAIN, 25));
+		lblNewLabel_3.setForeground(new Color(255, 181, 0));
+		lblNewLabel_3.setBounds(25, 260, 262, 50);
+		frame.getContentPane().add(lblNewLabel_3);
+		
+		//Tic Tac Toe Image --------------------------------------------------------------------------------------------------------------
+		JLabel lblNewLabel_1 = new JLabel("");
+		Image tictac = new ImageIcon(this.getClass().getResource("/tictactoename250p.png")).getImage();
+		lblNewLabel_1.setIcon(new ImageIcon(tictac));
+		lblNewLabel_1.setBounds(-43, 10, 250, 253);
+		frame.getContentPane().add(lblNewLabel_1);
+		
 		
 		// background image ---------------------------------------------------------------------------------------------------------------------
 		lblNewLabel = new JLabel("");
@@ -422,6 +446,10 @@ public class Game {
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 1096, 630);
 		frame.getContentPane().add(lblNewLabel);
+		
+		
+		
+		
 		
 	}
 	
