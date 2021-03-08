@@ -7,6 +7,8 @@ import javax.swing.border.MatteBorder;
 
 
 public class Game {
+	
+	// setting global variables -----------------------------------------------------------------------------------------------------------------
 	JFrame frame;
 	private JPanel panel;
 	private JButton[][] board;
@@ -24,7 +26,7 @@ public class Game {
 	private JLabel logomenu;
 	private JButton newGamebtn;
 	private JLabel newGamelbl;
-	private JLabel coming;
+
 
 	/**
 	 * Launch the application.
@@ -53,6 +55,8 @@ public class Game {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		// JFrame and JPanel initialization ----------------------------------------------------------------------------------------------------------
 		frame = new JFrame();
 		panel = new JPanel(new GridLayout(3, 3));
 		panel.setLocation(307, 61);
@@ -67,6 +71,7 @@ public class Game {
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
 		
+		// initializing the fields -------------------------------------------------------------------------------------------------------------------
 		currentPlayer = "X"; 
 		board = new JButton[3][3];
 		hasWinner = false;
@@ -74,16 +79,16 @@ public class Game {
 		initializeBoard();
 	}
 	
+	// initializing the menu bar ---------------------------------------------------------------------------------------------------------------------
 	private void initializeMenuBar() {
 		
+		// close button ------------------------------------------------------------------------------------------------------------------------------
 		JButton exitbutton = new JButton("X");
 		exitbutton.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseEntered(MouseEvent e) {
 				exitbutton.setBackground(new Color(217, 217, 217));
 				exitbutton.setForeground(new Color(0, 0, 0));
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				exitbutton.setBackground(new Color(255, 181, 0));
 				exitbutton.setForeground(Color.WHITE);
@@ -92,6 +97,7 @@ public class Game {
 		exitbutton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		exitbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// confirm dialog ---------------------------------------------------------------------------------------------------------------------
 				int exitconfirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
 				if (exitconfirmation == JOptionPane.YES_OPTION) {
 					System.exit(0);
@@ -106,6 +112,7 @@ public class Game {
 		exitbutton.setBounds(1044, 10, 42, 30);
 		frame.getContentPane().add(exitbutton);
 		
+		// minimize button ----------------------------------------------------------------------------------------------------------------------------
 		JButton minibutton = new JButton("_");
 		minibutton.setVerticalAlignment(SwingConstants.BOTTOM);
 		minibutton.addMouseListener(new MouseAdapter() {
@@ -134,17 +141,17 @@ public class Game {
 		minibutton.setBounds(998, 10, 42, 30);
 		frame.getContentPane().add(minibutton);
 		
+		// new instance of menu bar -----------------------------------------------------------------------------------------------------------------
 		menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(62, 62, 62));
 		menuBar.setBounds(0, 0, 1096, 50);
 		
+		// file menu --------------------------------------------------------------------------------------------------------------------------------
 		file = new JMenu("FILE");
 		file.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseEntered(MouseEvent e) {
 				file.setForeground(new Color(255, 181, 0));
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				file.setForeground(Color.WHITE);
 			}
@@ -153,7 +160,9 @@ public class Game {
 		file.setForeground(Color.WHITE);
 		file.setContentAreaFilled(false);
 
+		// new game menu item inside of file -----------------------------------------------------------------------------------------------------------
 		newGame = new JMenuItem("New Game");
+		// adding a shortcut key -----------------------------------------------------------------------------------------------------------------------
 		KeyStroke ctrlN = KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask());
 		newGame.setAccelerator(ctrlN);
 		newGame.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
@@ -163,6 +172,7 @@ public class Game {
 			}
 		});
 		
+		// quit button ---------------------------------------------------------------------------------------------------------------------------------
 		quit = new JMenuItem("Quit");
 		KeyStroke ctrlW = KeyStroke.getKeyStroke(KeyEvent.VK_W, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask());
 		quit.setAccelerator(ctrlW);
@@ -173,32 +183,33 @@ public class Game {
 			}
 		});
 		
+		// difficulty menu -----------------------------------------------------------------------------------------------------------------------------
 		diff = new JMenu("DIFFICULTY");
 		diff.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseEntered(MouseEvent e) {
 				diff.setForeground(new Color(255, 181, 0));
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				diff.setForeground(Color.WHITE);
 			}
 		});
 		diff.setForeground(Color.WHITE);
 		diff.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 17));
-	
+		
+		// 3X3 menu item -------------------------------------------------------------------------------------------------------------------------------
 		sizethree = new JMenuItem("3 x 3");
 		sizethree.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+		
+		// 4X4 menu item -------------------------------------------------------------------------------------------------------------------------------
 		sizefour = new JMenuItem("4 x 4");
 		sizefour.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 	
+		// mode menu -----------------------------------------------------------------------------------------------------------------------------------
 		mode = new JMenu("MODE");
 		mode.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseEntered(MouseEvent e) {
 				mode.setForeground(new Color(255, 181, 0));
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				mode.setForeground(Color.WHITE);
 			}

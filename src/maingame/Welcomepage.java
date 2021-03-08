@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -58,28 +59,9 @@ public class Welcomepage {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		// close button --------------------------------------------------------------------------------------------------------------------------
-		JButton exitbtn = new JButton("X");
-		exitbtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// confirm dialog ----------------------------------------------------------------------------------------------------------------
-				int exitconfirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
-				if (exitconfirmation == JOptionPane.YES_OPTION) {
-					System.exit(0);
-				}
-			}
-		});
-		exitbtn.setFocusPainted(false);
-		exitbtn.setFont(new Font("Tahoma", Font.BOLD, 16));
-		exitbtn.setBorder(new RoundedBorder(15));
-		exitbtn.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
-		exitbtn.setForeground(new Color(0, 0, 0));
-		exitbtn.setBounds(1036, 11, 50, 28);
-		frame.getContentPane().add(exitbtn);
-		
 		// play button --------------------------------------------------------------------------------------------------------------------------
 		JButton playbtn = new JButton("");
-		Image buttonplay = new ImageIcon(this.getClass().getResource("/playbtn.png")).getImage();
+		Image buttonplay = new ImageIcon(this.getClass().getResource("/playborderyellow.png")).getImage();
 		playbtn.setIcon(new ImageIcon(buttonplay));
 		playbtn.addMouseListener(new MouseAdapter() {
 			// change icon when mouse hovers -----------------------------------------------------------------------------------------------------
@@ -102,7 +84,7 @@ public class Welcomepage {
 		});
 		playbtn.setBorderPainted(false);
 		playbtn.setContentAreaFilled(false);
-		playbtn.setBounds(589, 240, 407, 402);
+		playbtn.setBounds(580, 241, 407, 402);
 		frame.getContentPane().add(playbtn);
 		
 		// Code Vision Studios logo -------------------------------------------------------------------------------------------------------------
@@ -112,6 +94,34 @@ public class Welcomepage {
 		logo.setBounds(10, 532, 161, 87);
 		frame.getContentPane().add(logo);
 		
+		JButton Close = new JButton("X");
+		Close.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		Close.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 System.exit(0);
+			}
+		});
+		Close.setFocusPainted(false);
+		Close.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 15));
+		Close.setBackground(new Color(62, 62, 62));
+		Close.setForeground(new Color(255, 255, 255));
+		Close.setBounds(1041, 11, 45, 30);
+		frame.getContentPane().add(Close);
+		
+		//Minimize Button --------------------------------------------------------
+		JButton Mini = new JButton("_");
+		Mini.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		Mini.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setState(JFrame.ICONIFIED);
+			}
+		});
+		Mini.setFocusPainted(false);
+		Mini.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 15));
+		Mini.setBackground(new Color(62, 62, 62));
+		Mini.setForeground(new Color(255, 255, 255));
+		Mini.setBounds(993, 11, 45, 30);
+		frame.getContentPane().add(Mini);
 		
 		// facebook icon ------------------------------------------------------------------------------------------------------------------------
 		JButton fb = new JButton("");
