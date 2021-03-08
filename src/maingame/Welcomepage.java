@@ -6,25 +6,21 @@ import java.awt.Image;
 
 import javax.swing.JFrame;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Welcomepage {
 
 	public JFrame frame;
-	private JButton twt;
 
 	/**
 	 * Launch the application.
@@ -53,6 +49,8 @@ public class Welcomepage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		// JFrame initialization -----------------------------------------------------------------------------------------------------------------
 		frame = new JFrame();
 		frame.setBounds (100, 100, 1096, 630);
 		frame.setLocationRelativeTo(null);
@@ -60,9 +58,11 @@ public class Welcomepage {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		// close button --------------------------------------------------------------------------------------------------------------------------
 		JButton exitbtn = new JButton("X");
 		exitbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// confirm dialog ----------------------------------------------------------------------------------------------------------------
 				int exitconfirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
 				if (exitconfirmation == JOptionPane.YES_OPTION) {
 					System.exit(0);
@@ -77,20 +77,21 @@ public class Welcomepage {
 		exitbtn.setBounds(1036, 11, 50, 28);
 		frame.getContentPane().add(exitbtn);
 		
+		// play button --------------------------------------------------------------------------------------------------------------------------
 		JButton playbtn = new JButton("");
 		Image buttonplay = new ImageIcon(this.getClass().getResource("/playbtn.png")).getImage();
 		playbtn.setIcon(new ImageIcon(buttonplay));
 		playbtn.addMouseListener(new MouseAdapter() {
-			@Override
+			// change icon when mouse hovers -----------------------------------------------------------------------------------------------------
 			public void mouseEntered(MouseEvent e) {
 				Image hoverplay = new ImageIcon(this.getClass().getResource("/playhmm.png")).getImage();
 				playbtn.setIcon(new ImageIcon(hoverplay));
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				playbtn.setIcon(new ImageIcon(buttonplay));
 			}
 		});
+		// redirects to Login frame when button is clicked ---------------------------------------------------------------------------------------
 		playbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Credentials cd = new Credentials();
@@ -104,26 +105,28 @@ public class Welcomepage {
 		playbtn.setBounds(573, 112, 407, 402);
 		frame.getContentPane().add(playbtn);
 		
+		// Code Vision Studios logo -------------------------------------------------------------------------------------------------------------
 		JLabel logo = new JLabel("");
 		Image LOGO = new ImageIcon(this.getClass().getResource("/logooo.png")).getImage();
 		logo.setIcon(new ImageIcon(LOGO));
 		logo.setBounds(10, 532, 161, 87);
 		frame.getContentPane().add(logo);
 		
+		
+		// facebook icon ------------------------------------------------------------------------------------------------------------------------
 		JButton fb = new JButton("");
 		fb.setBorder(null);
 		fb.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseEntered(MouseEvent e) {
 				Image facebook2 = new ImageIcon(this.getClass().getResource("/fb2.png")).getImage();
 				fb.setIcon(new ImageIcon(facebook2));
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				Image facebook = new ImageIcon(this.getClass().getResource("/fb.png")).getImage();
 				fb.setIcon(new ImageIcon(facebook));
 			}
 		});
+		// redirects to link inserted when clicked -----------------------------------------------------------------------------------------------
 		fb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				openWebPage("https://www.facebook.com/gabbydavid51");
@@ -137,14 +140,13 @@ public class Welcomepage {
 		fb.setBounds(175, 572, 50, 50);
 		frame.getContentPane().add(fb);
 		
+		// twitter icon ---------------------------------------------------------------------------------------------------------------------------
 		JButton twt = new JButton();
 		twt.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseEntered(MouseEvent e) {
 				Image twitter2 = new ImageIcon(this.getClass().getResource("/twt2.png")).getImage();
 				twt.setIcon(new ImageIcon(twitter2));
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				Image twitter = new ImageIcon(this.getClass().getResource("/twt.png")).getImage();
 				twt.setIcon(new ImageIcon(twitter));
@@ -163,14 +165,13 @@ public class Welcomepage {
 		twt.setBounds(226, 572, 50, 50);
 		frame.getContentPane().add(twt);
 		
+		// instagram icon ------------------------------------------------------------------------------------------------------------------------
 		JButton ig = new JButton();
 		ig.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseEntered(MouseEvent e) {
 				Image insta2 = new ImageIcon(this.getClass().getResource("/ig2.png")).getImage();
 				ig.setIcon(new ImageIcon(insta2));
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				Image insta = new ImageIcon(this.getClass().getResource("/ig.png")).getImage();
 				ig.setIcon(new ImageIcon(insta));
@@ -189,14 +190,13 @@ public class Welcomepage {
 		ig.setBounds(277, 572, 50, 50);
 		frame.getContentPane().add(ig);
 		
+		// discord icon ---------------------------------------------------------------------------------------------------------------------------
 		JButton dc = new JButton();
 		dc.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseEntered(MouseEvent e) {
 				Image discord2 = new ImageIcon(this.getClass().getResource("/dc2.png")).getImage();
 				dc.setIcon(new ImageIcon(discord2));
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				Image discord = new ImageIcon(this.getClass().getResource("/dc.png")).getImage();
 				dc.setIcon(new ImageIcon(discord));
@@ -215,12 +215,14 @@ public class Welcomepage {
 		dc.setBounds(328, 572, 50, 50);
 		frame.getContentPane().add(dc);
 		
+		// tictactoe logo --------------------------------------------------------------------------------------------------------------------
 		JLabel tictactoename = new JLabel("");
 		Image tictac = new ImageIcon(this.getClass().getResource("/tictactoename.png")).getImage();
 		tictactoename.setIcon(new ImageIcon(tictac));
 		tictactoename.setBounds(-25, 28, 442, 389);
 		frame.getContentPane().add(tictactoename);
 		
+		// background image --------------------------------------------------------------------------------------------------------------------
 		JLabel background = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/welcomeback.png")).getImage();
 		background.setIcon(new ImageIcon(img));
@@ -229,6 +231,7 @@ public class Welcomepage {
 		
 	}
 	
+	// connects to browser ----------------------------------------------------------------------------------------------------------------------
 	public void openWebPage(String url){
 		   try {         
 		     java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
