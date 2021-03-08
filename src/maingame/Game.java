@@ -208,6 +208,7 @@ public class Game {
 		// 4X4 menu item -------------------------------------------------------------------------------------------------------------------------------
 		sizefour = new JMenuItem("4 x 4");
 		sizefour.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+		sizefour.setToolTipText("COMING SOON");
 	
 		// mode menu -----------------------------------------------------------------------------------------------------------------------------------
 		mode = new JMenu("MODE");
@@ -230,6 +231,7 @@ public class Game {
 		// VS. COMPUTER menu item ----------------------------------------------------------------------------------------------------------------------
 		AI = new JMenuItem("VS. COMPUTER");
 		AI.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+		AI.setToolTipText("COMING SOON");
 		
 		// Code Vision Studios logo --------------------------------------------------------------------------------------------------------------------
 		logomenu = new JLabel("");
@@ -423,13 +425,14 @@ public class Game {
 		lblNewLabel_2 = new JLabel("Welcome,");
 		lblNewLabel_2.setFont(new Font("Luckiest Guy", Font.PLAIN, 25));
 		lblNewLabel_2.setForeground(Color.BLACK);
-		lblNewLabel_2.setBounds(25, 228, 120, 50);
+		lblNewLabel_2.setBounds(24, 247, 120, 50);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		lblNewLabel_3 = new JLabel(id1.getFname());
-		lblNewLabel_3.setFont(new Font("Luckiest Guy", Font.PLAIN, 25));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setFont(new Font("Luckiest Guy", Font.PLAIN, 30));
 		lblNewLabel_3.setForeground(Color.BLACK);
-		lblNewLabel_3.setBounds(25, 260, 262, 50);
+		lblNewLabel_3.setBounds(24, 280, 262, 50);
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		//Tic Tac Toe Image --------------------------------------------------------------------------------------------------------------
@@ -439,17 +442,12 @@ public class Game {
 		lblNewLabel_1.setBounds(-43, 10, 250, 253);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		
 		// background image ---------------------------------------------------------------------------------------------------------------------
 		lblNewLabel = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/backgame2.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 1096, 630);
 		frame.getContentPane().add(lblNewLabel);
-		
-		
-		
-		
 		
 	}
 	
@@ -499,6 +497,7 @@ public class Game {
 				btn.setFocusPainted(false);
 				board[i][j] = btn;
 				btn.addActionListener(new ActionListener() {
+					// enables user to put their character on a button ---------------------------------------------------------------------------------
 					public void actionPerformed(ActionEvent e) {
 						if (((JButton)e.getSource()).getText().equals("") &&
 						hasWinner == false) {
@@ -567,7 +566,7 @@ public class Game {
 			JOptionPane.showMessageDialog(null, "It's a tie!");
 		}
 	}
-
+	
 	public void setVisible(boolean b) {
 		}
 	}
