@@ -62,7 +62,6 @@ public class Login {
 	 */
 	public Login(Credentials id) {
 		// initializes Credentials.java and/or receive its data ----------------------------------
-		
 		id1 = id;
 		setData();
 		initialize();
@@ -94,7 +93,7 @@ public class Login {
 	private boolean FindEmail(String eemail) {
 		boolean a = false;
 		for (int i = 0; i < 2; i++) {
-		    if(email.get(i).contains(eemail)) 
+		    if(email.get(i).contains(eemail) || id1.getemail().equals(eemail)) 
 		    	a = true;
 		    
 		    }
@@ -103,11 +102,15 @@ public class Login {
 	//gets the index of the email in the database ---------------------------------
 	private int FindUserEmail(String usermail) {
 		int mailIndex = 0;
-		for (int i = 0; i < 2; i++) {
-		    if(email.get(i).contains(usermail)) 
+		if(!id1.getemail().equals(usermail)) {
+			mailIndex += 2;
+		}else{
+			for (int i = 0; i < 2; i++) {
+		    if(email.get(i).contains(usermail) ) 
 		    	mailIndex += i;
 		    
 		    }
+		}
 		return mailIndex;
 	}
 		

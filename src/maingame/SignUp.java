@@ -115,10 +115,7 @@ public class SignUp {
 		Pattern pattern = Pattern.compile(email, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(txtEmail.getText());		
 
-		if (sName.trim().equals("") || uName.trim().equals("")|| mail.trim().equals("")|| pass1.trim().equals("") || pass2.trim().equals("")){
-			 JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty", "Empty Fields", 2);
-	            return false;
-		}
+		
 		if (sName.trim().equals("Player Name")) {
 			playervalidation.setVisible(true);
 		}
@@ -127,6 +124,7 @@ public class SignUp {
 		}
 		if (mail.trim().equals("Email")) {
 			emailvalidation.setVisible(true);
+			JOptionPane.showMessageDialog(null, "Improper Email Format", "Verify Email", 2); 
 		}
 		if (pass1.trim().equals("Password")) {
 			passwordvalidation.setVisible(true);
@@ -136,7 +134,6 @@ public class SignUp {
 		}
 		else if (!matcher.matches()) {
 			emailvalidation.setVisible(true);
-//			mailE.setForeground(new )
 		}
 		else if (!pass1.equals(pass2)) {
 			JOptionPane.showMessageDialog(null, "Password Doesn't Match", "Confirm Password", 2); 
@@ -219,8 +216,10 @@ public class SignUp {
 			public void focusGained(FocusEvent e) {
 				if (txtname.getText().trim().equals("") || 
 						txtname.getText().trim().toLowerCase().equals("player name")) {
+				txtname.setFont(new Font("Tahoma", Font.PLAIN, 22));
 				txtname.setText("");
 				}
+				playervalidation.setVisible(false);
 				pName.setVisible(true);
 
 			}
@@ -229,6 +228,7 @@ public class SignUp {
 				if (txtname.getText().trim().equals("") || 
 						txtname.getText().trim().toLowerCase().equals("player name")) {
 				txtname.setText("Player Name");
+				txtname.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 				pName.setVisible(false);
 				}
 				
@@ -255,9 +255,11 @@ public class SignUp {
 			public void focusGained(FocusEvent e) {
 				if (txtUsername.getText().trim().equals("") || 
 						txtUsername.getText().trim().toLowerCase().equals("username")) {
+				txtUsername.setFont(new Font("Tahoma", Font.PLAIN, 22));
 				txtUsername.setText("");
 				
 				}
+				uservalidation.setVisible(false);
 				userName.setVisible(true);
 			}
 			@Override
@@ -265,6 +267,7 @@ public class SignUp {
 				if (txtUsername.getText().trim().equals("") || 
 						txtUsername.getText().trim().toLowerCase().equals("username")) {
 				txtUsername.setText("Username");
+				txtUsername.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 				userName.setVisible(false);
 				}
 			}
@@ -291,14 +294,17 @@ public class SignUp {
 				public void focusGained(FocusEvent e) {
 					if (txtEmail.getText().trim().equals("") || 
 							txtEmail.getText().trim().toLowerCase().equals("email")) {
+						txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 22));
 						txtEmail.setText("");
 					}
+					emailvalidation.setVisible(false);
 					mailE.setVisible(true);
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
 					if (txtEmail.getText().trim().equals("") || 
 							txtEmail.getText().trim().toLowerCase().equals("email")) {
+						txtEmail.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 						txtEmail.setText("Email");
 					mailE.setVisible(false);
 					}
@@ -326,14 +332,17 @@ public class SignUp {
 				public void focusGained(FocusEvent e) {
 					if (String.valueOf(textPass.getPassword()).trim().equals("") || 
 							String.valueOf(textPass.getPassword()).trim().toLowerCase().equals("password")) {
+					textPass.setFont(new Font("Tahoma", Font.PLAIN, 22));
 					textPass.setText("");
 					}
+					passwordvalidation.setVisible(false);
 					PasswordLbl.setVisible(true);
 					textPass.setEchoChar((char)0);
 				}
 				public void focusLost(FocusEvent e) {
 					if (String.valueOf(textPass.getPassword()).trim().equals("") || 
 							String.valueOf(textPass.getPassword()).trim().toLowerCase().equals("password")) {
+						textPass.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 						textPass.setText("Password");
 					PasswordLbl.setVisible(false);
 					textPass.setEchoChar((char)0); 
@@ -341,6 +350,7 @@ public class SignUp {
 							!String.valueOf(textPass.getPassword()).trim().toLowerCase().equals("password")){
 						textPass.setEchoChar('*'); 
 					}
+					reppassvalidation.setVisible(false);
 				}
 			});
 			textPass.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
@@ -364,8 +374,9 @@ public class SignUp {
 			public void focusGained(FocusEvent e) {
 				if (String.valueOf(textreppass.getPassword()).trim().equals("") || 
 						String.valueOf(textreppass.getPassword()).trim().toLowerCase().equals("repeat password")) {
+					textreppass.setFont(new Font("Tahoma", Font.PLAIN, 22));
 					textreppass.setText("");
-					
+					reppassvalidation.setVisible(false);
 				}
 				RepPasswordlbl.setVisible(true);
 				textreppass.setEchoChar((char)0);
@@ -375,6 +386,7 @@ public class SignUp {
 			public void focusLost(FocusEvent e) {
 				if (String.valueOf(textreppass.getPassword()).trim().equals("") || 
 						String.valueOf(textreppass.getPassword()).trim().toLowerCase().equals("repeat password")) {
+					textreppass.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 					textreppass.setText("Repeat Password");
 				RepPasswordlbl.setVisible(false);
 				textreppass.setEchoChar((char)0); 
@@ -446,11 +458,30 @@ public class SignUp {
 		frame.getContentPane().add(Loginbtn);
 		
 		// Agree Label -----------------------------------------------------------
-		JLabel agree = new JLabel("I Agree to The Terms of Service");
+		JLabel agree = new JLabel("I Agree to The ");
 		agree.setForeground(new Color(255, 181, 0));
 		agree.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
-		agree.setBounds(496, 596, 329, 30);
+		agree.setBounds(496, 596, 142, 30);
 		frame.getContentPane().add(agree);
+		
+		JLabel lblNewLabel_2 = new JLabel("and");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_2.setForeground(new Color(255, 181, 0));
+		lblNewLabel_2.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
+		lblNewLabel_2.setBounds(580, 616, 45, 42);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		JLabel lblNewLabel = new JLabel("<HTML><U>Terms of Service</U></HTML>");
+		lblNewLabel.setForeground(new Color(255, 181, 0));
+		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
+		lblNewLabel.setBounds(631, 596, 181, 30);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("<HTML><U>Privacy Policy</U></HTML>");
+		lblNewLabel_1.setForeground(new Color(255, 181, 0));
+		lblNewLabel_1.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
+		lblNewLabel_1.setBounds(631, 625, 212, 25);
+		frame.getContentPane().add(lblNewLabel_1);
 		
 		// Tictac Toe gif -------------------------------------------------------
 		JLabel gifXO = new JLabel("");
@@ -475,9 +506,11 @@ public class SignUp {
 				});
 				Agreechkbox.setBounds(471, 596, 21, 23);
 				frame.getContentPane().add(Agreechkbox);
-	
+				
+		//Form Validation Labels-----------------------------------------------------
 		playervalidation = new JLabel("is required. *");
-		playervalidation.setFont(new Font("Century Gothic", Font.BOLD, 12));
+		playervalidation.setForeground(Color.ORANGE);
+		playervalidation.setBackground(Color.WHITE);
 		playervalidation.setHorizontalAlignment(SwingConstants.RIGHT);
 		playervalidation.setForeground(new Color(214, 237, 23));
 		playervalidation.setBounds(631, 161, 188, 14);
