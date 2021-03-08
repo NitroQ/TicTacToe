@@ -98,7 +98,7 @@ public class Login {
 		if(!id1.equals(null)) {
 			c += id1.getemail();
 		}
-		
+	
 		for (int i = 0; i < 2; i++) {
 		    if(email.get(i).contains(eemail) || c.equals(eemail)) {
 		    	a = true;
@@ -109,19 +109,23 @@ public class Login {
 	}
 	//gets the index of the email in the database ---------------------------------
 	private int FindUserEmail(String usermail) {
+		String credmail = "";
+		if(!id1.equals(null)) {
+			credmail += id1.getemail();
+		}
+		
 		int mailIndex = 0;
-		if(!id1.getemail().equals(usermail)) {
+		if(credmail.equals(usermail) && !credmail.equals("")) {
 			mailIndex += 2;
 		}else{
 			for (int i = 0; i < 2; i++) {
-		    if(email.get(i).contains(usermail) ) 
+		    if(email.get(i).contains(usermail)) 
 		    	mailIndex += i;
-		    
+	  
 		    }
 		}
 		return mailIndex;
 	}
-		
 	private boolean checkFields(){
 		/* 
 		 * Checks all Fields if its empty and matches required format ------------------------------------
