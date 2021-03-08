@@ -448,9 +448,17 @@ public class Game {
 		}
 	}
 	
-//	private void Draw() {
-//		if ()
-//	}
+	private void Draw() {
+		for (int k = 0; k < 1; k++) {
+		for (int i = 0; i < 3; i++) { 
+			for (int j = 0; j < 3; j++) { 
+				if (!board[i][j].getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "It's a tie!");
+				}
+			}
+		}
+	}
+	}
 	
 	private void togglePlayer() {
 		if (currentPlayer.equals("X"))
@@ -494,6 +502,14 @@ public class Game {
 		else if (board[2][0].getText().equals(currentPlayer) && board[2][1].getText().equals(currentPlayer) && board[2][2].getText().equals(currentPlayer)) {
 			JOptionPane.showOptionDialog(panel, panel, "Congratulations", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 			hasWinner = true;
+		}
+		else if (!board[0][0].getText().equals("") && !board[1][0].getText().equals("") && !board[2][0].getText().equals("") && 
+				!board[0][1].getText().equals("") && !board[1][1].getText().equals("") && !board[2][1].getText().equals("") &&
+				!board[0][2].getText().equals("") && !board[1][2].getText().equals("") && !board[2][2].getText().equals("") &&
+				!board[0][0].getText().equals("") && !board[0][1].getText().equals("") && !board[0][2].getText().equals("") &&
+				!board[1][0].getText().equals("") && !board[1][1].getText().equals("") && !board[1][2].getText().equals("") &&
+				!board[2][0].getText().equals("") && !board[2][1].getText().equals("") && !board[2][2].getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "It's a tie!");
 		}
 	}
 
