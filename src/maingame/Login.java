@@ -455,7 +455,6 @@ public class Login {
 			public void mouseEntered(MouseEvent e) {
 				lblNewLabel.setText("<HTML><U>Forgot Password?</U></HTML>");
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				lblNewLabel.setText("Forgot Password?");
 			}
@@ -464,6 +463,27 @@ public class Login {
 		lblNewLabel.setForeground(new Color(255, 181, 0));
 		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
 		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel donthave = new JLabel("Don't have an account yet?");
+		donthave.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				donthave.setForeground(new Color(208, 49, 45));
+				SignUp in = new SignUp(id1);
+				in.frame.setVisible(true);
+				frame.dispose();
+			}
+		public void mouseEntered(MouseEvent e) {
+			donthave.setText("<HTML><U>Don't have an account yet?</U></HTML>");
+		}
+		@Override
+		public void mouseExited(MouseEvent e) {
+			donthave.setText("Don't have an account yet?");
+		}
+		});
+		donthave.setForeground(new Color(255, 181, 0));
+		donthave.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
+		donthave.setBounds(404, 346, 212, 28);
+		frame.getContentPane().add(donthave);
 		
 		// privacy button -----------------------------------------------------------------------------------------------------------------------
 		privacy = new JButton("Privacy");
