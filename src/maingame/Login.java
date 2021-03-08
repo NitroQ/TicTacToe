@@ -68,18 +68,19 @@ public class Login {
 		initialize();
 	}
 	private void setData() {
+		//initializing arraylist with existing database -------------------------------------------
 		user = new ArrayList<String>();
 		pass = new ArrayList<String>();
 		name = new ArrayList<String>();
 		email = new ArrayList<String>();
-		
+		//adding existing users --------------------------------------------------------
 		user.add("Frank"); pass.add("frank"); name.add("Frank Vincent"); email.add("frankgesmundo10@gmail.com");
 		user.add("Gabby"); pass.add("gab123"); name.add("Gabrille"); email.add("gabbydavid408@gmail.com");
 		if(!id1.equals(null)) {
 		user.add(id1.getUname()); pass.add(id1.getpass1()); name.add(id1.getFname()); email.add(id1.getemail());
 		}
 	}
-	
+	//Finds the username Index (used for login) -----------------------------------
 	private int UserFind(String name) {
 		int b = 0;
 		for (int i = 0; i < 2; i++) {
@@ -89,6 +90,7 @@ public class Login {
 		    }
 		return b;
 	}
+	//finds the email if it exist in the database --------------------------------
 	private boolean FindEmail(String eemail) {
 		boolean a = false;
 		for (int i = 0; i < 2; i++) {
@@ -98,6 +100,7 @@ public class Login {
 		    }
 		return a;
 	}
+	//gets the index of the email in the database ---------------------------------
 	private int FindUserEmail(String usermail) {
 		int mailIndex = 0;
 		for (int i = 0; i < 2; i++) {
@@ -130,34 +133,41 @@ public class Login {
 		
 	}
 	private boolean checkLogin() {
-	
+		//Checks textfields for data ---------------------------------
 		String uName = txtUsername.getText();
 		String pass1 = String.valueOf(txtPassword.getPassword());
-		
+		//getting the data -------------------------------------------
 			int userD = UserFind(uName);
 			String usName = user.get(userD);
 			String opass = pass.get(userD);
 		
-		
+		//comparing data to existing database -----------------------
 		if(!pass1.equals(opass) || !uName.equals(usName)) {
 			JOptionPane.showMessageDialog(null, "Username/Password Doesn't Match","Check Username/Password",2); 
+			//return value
 			 return false;
 		}else {
 			id1.setFname(name.get(userD));
+			//return value
 			return true;
 		}
 	
 	}
 	private String forgotPass(String email) {
+		 //this method emails the user for his verification code -----------------------------------------
+		
+		//Login email API ---------------------------------------------------
 		  final String user="tictactoeprojectjava@gmail.com";
 		  final String password="penge4nagrade";
 		  
+		//Sends to: ---------------------------------------------------
 		  String to= email;
 		  
+		//Generates a code -------------------------------------------
 		  Random r = new Random();
-	      String rand = String.valueOf(r.nextInt((50000 - 10000) + 1) + 0);
+	      String rand = String.valueOf(r.nextInt((90000 - 10000) + 1) + 0);
 	      
-		   //Get the session object  
+		   //Get the session variables  -------------------------------
 		   Properties props = new Properties();  
 		   props.put("mail.smtp.host", "smtp.gmail.com");
 	        props.put("mail.smtp.port", "465");
@@ -172,7 +182,7 @@ public class Login {
 		      }  
 		    });  
 		  
-		   //Compose the message  
+		   //Composing the message --------------------------------------  
 		    try {  
 		     MimeMessage message = new MimeMessage(session);  
 		     message.setFrom(new InternetAddress(user));  
@@ -180,12 +190,13 @@ public class Login {
 		     message.setSubject("Forgot Password");  
 		     message.setText("Your Recovery Code is: " + rand);  
 		       
-		    //send the message  
+		    //Send the code -------------------------------------------- 
 		     Transport.send(message);  
 		   
 		     } catch (MessagingException e) {
 		    	 e.printStackTrace();
 		    	 }  
+		    //returns verification code to the method for verification ----------------------------
 		    return rand;
 	}
 	
@@ -301,7 +312,9 @@ public class Login {
 		Loginlbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				// checks if text fields are populated -----------------------
 				if(checkFields()) {
+					//checks if the user is in the database ------------------
 					if(checkLogin()) {
 					Game tictac = new Game();
 					tictac.frame.setVisible(true);
@@ -320,7 +333,9 @@ public class Login {
 		xbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				// checks if text fields are populated -----------------------
 				if(checkFields()) {
+					//checks if the user is in the database ------------------
 					if(checkLogin()) {
 					Game tictac = new Game();
 					tictac.frame.setVisible(true);
@@ -381,11 +396,16 @@ public class Login {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				lblNewLabel.setForeground(new Color(208, 49, 45));
+				
+				  // Email Verification 
 		        String mail = JOptionPane.showInputDialog("Input Account Email: ");
 		        if (FindEmail(mail)) {
+		        //Sends code via user's email ---------------------------------
 		        String verification = forgotPass(mail);
 		        String code = JOptionPane.showInputDialog("Input Code: ");
+		        	//checks if code matches with user input ------------------
 		        	if(verification.equals(code)) {
+		        		//finds the index of the email and change its password
 		        		int mailInt = FindUserEmail(mail);
 		        		String newpass = JOptionPane.showInputDialog("New Password: ");
 		        		String repnewpass = JOptionPane.showInputDialog("Repeat Password: ");
@@ -394,9 +414,9 @@ public class Login {
 		        			}else {
 		        				JOptionPane.showMessageDialog(null, "Password Did Not Match, Try Again", "Failed", 2);
 		        			}
-		        		
 		        	}
 		        }else {
+		        	//print if the email does not exist in the database ------------------------------------
 		        	 JOptionPane.showMessageDialog(null, "You are not yet signed up in this email.","User not Found",2);
 		        }
 			}
