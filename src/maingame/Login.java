@@ -41,6 +41,8 @@ public class Login {
 	public JFrame frame;
 	private JTextField txtUsername;
 	private JPasswordField txtPassword;
+	private JLabel uservalidation;
+	private JLabel passvalidation;
 	
 	// Launch the application-----------------------------------------
 
@@ -124,17 +126,27 @@ public class Login {
 		if (uName.trim().toLowerCase().equals("username") && pass1.trim().toLowerCase().equals("password")){
 			 JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty","Empty Fields",2);
 	            return false;
-		}else if (uName.trim().equals("")){
+		}
+		if (uName.trim().toLowerCase().equals("username")) {
+			uservalidation.setVisible(true);
+		}
+		if (pass1.trim().toLowerCase().equals("password")) {
+			passvalidation.setVisible(true);
+		}
+		else if (uName.trim().equals("")) {
 			 JOptionPane.showMessageDialog(null, "Username is Required","Input Username",2);
 	            return false;
-		}else if (pass1.trim().equals("")){
+		}
+		else if (pass1.trim().equals("")) {
 			 JOptionPane.showMessageDialog(null, "Password is Required","Input Password",2);
 	            return false;
-		}else{
+		}
+		else {
 			return true;
 		}
-		
+		return false;		
 	}
+	
 	private boolean checkLogin() {
 		//Checks textfields for data ---------------------------------
 		String uName = txtUsername.getText();
@@ -232,7 +244,10 @@ public class Login {
 		JButton Close = new JButton("X");
 		Close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				int exitconfirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
+				if (exitconfirmation == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
 			}
 		});
 		Close.setFocusPainted(false);
@@ -395,6 +410,7 @@ public class Login {
 		
 		//Forgot Password-----------------------------------------------------
 		JLabel lblNewLabel = new JLabel("Forgot Password?");
+		lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -423,11 +439,32 @@ public class Login {
 		        	 JOptionPane.showMessageDialog(null, "You are not yet signed up in this email.","User not Found",2);
 		        }
 			}
+			public void mouseEntered(MouseEvent e) {
+				lblNewLabel.setText("<HTML><U>Forgot Password?</U></HTML>");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblNewLabel.setText("Forgot Password?");
+			}
 		});
 		lblNewLabel.setBounds(404, 321, 161, 28);
 		lblNewLabel.setForeground(new Color(255, 181, 0));
 		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
 		frame.getContentPane().add(lblNewLabel);
+		
+		uservalidation = new JLabel("is required. *");
+		uservalidation.setForeground(Color.ORANGE);
+		uservalidation.setHorizontalAlignment(SwingConstants.RIGHT);
+		uservalidation.setBounds(622, 144, 105, 14);
+		uservalidation.setVisible(false);
+		frame.getContentPane().add(uservalidation);
+		
+		passvalidation = new JLabel("is required. *");
+		passvalidation.setHorizontalAlignment(SwingConstants.RIGHT);
+		passvalidation.setForeground(Color.ORANGE);
+		passvalidation.setBounds(622, 234, 105, 14);
+		passvalidation.setVisible(false);
+		frame.getContentPane().add(passvalidation);
 		
 		// Background Image --------------------------------------------------
 		JLabel background = new JLabel("");
@@ -435,8 +472,6 @@ public class Login {
 		background.setIcon(new ImageIcon(img));
 		background.setBounds(0, 0, 800, 484);
 		frame.getContentPane().add(background);
-		
-		
 		
 	}
 

@@ -98,7 +98,10 @@ public class Welcomepage {
 		Close.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		Close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 System.exit(0);
+				int exitconfirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
+				if (exitconfirmation == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
 			}
 		});
 		Close.setFocusPainted(false);

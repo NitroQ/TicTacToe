@@ -130,8 +130,7 @@ public class SignUp {
 			uservalidation.setVisible(true);
 		}
 		if (mail.trim().equals("Email")) {
-			emailvalidation.setVisible(true);
-			JOptionPane.showMessageDialog(null, "Improper Email Format", "Verify Email", 2); 
+			emailvalidation.setVisible(true); 
 		}
 		if (pass1.trim().equals("Password")) {
 			passwordvalidation.setVisible(true);
@@ -141,6 +140,7 @@ public class SignUp {
 		}
 		else if (!matcher.matches()) {
 			emailvalidation.setVisible(true);
+			JOptionPane.showMessageDialog(null, "Improper Email Format", "Verify Email", 2);
 		}
 		else if (!pass1.equals(pass2)) {
 			JOptionPane.showMessageDialog(null, "Password Doesn't Match", "Confirm Password", 2); 
@@ -178,7 +178,10 @@ public class SignUp {
 		Close.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		Close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 System.exit(0);
+				int exitconfirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
+				if (exitconfirmation == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
 			}
 		});
 		Close.setFocusPainted(false);
@@ -568,6 +571,27 @@ public class SignUp {
 		reppassvalidation.setBounds(631, 508, 188, 14);
 		reppassvalidation.setVisible(false);
 		frame.getContentPane().add(reppassvalidation);
+		
+		JLabel haveaccount = new JLabel("Already have an account?");
+		haveaccount.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		haveaccount.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				haveaccount.setForeground(new Color(208, 49, 45));
+				Login in = new Login(id1);
+				in.frame.setVisible(true);
+				frame.dispose();
+			}
+			public void mouseEntered(MouseEvent e) {
+				haveaccount.setText("<HTML><U>Already have an account?</U></HTML>");
+			}
+			public void mouseExited(MouseEvent e) {
+				haveaccount.setText("Already have an account?");
+			}
+		});
+		haveaccount.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
+		haveaccount.setForeground(new Color(255, 181, 0));
+		haveaccount.setBounds(460, 705, 212, 28);
+		frame.getContentPane().add(haveaccount);
 		
 		// Jlabel Background ----------------------------------------------------
 		JLabel Background = new JLabel("");
