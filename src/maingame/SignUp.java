@@ -85,7 +85,14 @@ public class SignUp {
 		frame.dispose();
 		
 	}
-	
+	public void openWebPage(String url){
+		   try {         
+		     java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+		   }
+		   catch (java.io.IOException e) {
+		       System.out.println(e.getMessage());
+		   }
+	}
 	public void setStuff() {
 		
 		// Sends data to Credentials to save user data -------------------------------------------
@@ -472,12 +479,26 @@ public class SignUp {
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel = new JLabel("<HTML><U>Terms of Service</U></HTML>");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				openWebPage("https://sites.google.com/view/tictactoeproject/terms?authuser=0");
+				lblNewLabel.setForeground(new Color(255, 255, 255));
+			}
+		});
 		lblNewLabel.setForeground(new Color(255, 181, 0));
 		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
 		lblNewLabel.setBounds(631, 596, 181, 30);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("<HTML><U>Privacy Policy</U></HTML>");
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				openWebPage("https://sites.google.com/view/tictactoeproject/privacy-policy?authuser=0");
+				lblNewLabel_1.setForeground(new Color(255, 255, 255));
+			}
+		});
 		lblNewLabel_1.setForeground(new Color(255, 181, 0));
 		lblNewLabel_1.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
 		lblNewLabel_1.setBounds(631, 625, 212, 25);
@@ -512,7 +533,6 @@ public class SignUp {
 		playervalidation.setForeground(Color.ORANGE);
 		playervalidation.setBackground(Color.WHITE);
 		playervalidation.setHorizontalAlignment(SwingConstants.RIGHT);
-		playervalidation.setForeground(new Color(214, 237, 23));
 		playervalidation.setBounds(631, 161, 188, 14);
 		playervalidation.setVisible(false);
 		frame.getContentPane().add(playervalidation);	
