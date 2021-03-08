@@ -23,6 +23,7 @@ public class Game {
 	private JButton helpbutton;
 	private JButton privacy;
 	private JButton terms;
+	private JButton aboutus;
 	private JLabel logomenu;
 	private JButton newGamebtn;
 	private JLabel newGamelbl;
@@ -323,8 +324,31 @@ public class Game {
 		terms.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		terms.setContentAreaFilled(false);
 		terms.setBorderPainted(false);
-		terms.setBounds(70, 596, 77, 23);
+		terms.setBounds(68, 596, 77, 23);
 		frame.getContentPane().add(terms);
+		
+		// about us button ---------------------------------------------------------------------------------------------------------------------------------
+		aboutus = new JButton("About Us");
+		aboutus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openWebPage("https://sites.google.com/view/tictactoeproject/home");
+			}
+		});
+		aboutus.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				aboutus.setText("<HTML><U>About Us</U></HTML>");
+			}
+			public void mouseExited(MouseEvent e) {
+				aboutus.setText("About Us");
+			}
+		});
+		aboutus.setHorizontalAlignment(SwingConstants.LEADING);
+		aboutus.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
+		aboutus.setFocusPainted(false);
+		aboutus.setContentAreaFilled(false);
+		aboutus.setBorderPainted(false);
+		aboutus.setBounds(133, 596, 90, 23);
+		frame.getContentPane().add(aboutus);
 		
 		// new game label ------------------------------------------------------------------------------------------------------------------------
 		newGamelbl = new JLabel("NEW GAME");

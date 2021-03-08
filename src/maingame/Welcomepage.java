@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 
 import java.awt.Color;
@@ -22,7 +23,9 @@ import java.awt.event.MouseEvent;
 public class Welcomepage {
 
 	public JFrame frame;
-
+	private JButton privacy;
+	private JButton terms;
+	private JButton aboutus;
 	/**
 	 * Launch the application.
 	 */
@@ -58,6 +61,77 @@ public class Welcomepage {
 		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		// privacy button -----------------------------------------------------------------------------------------------------------------------
+		privacy = new JButton("Privacy");
+		privacy.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				privacy.setText("<HTML><U>Privacy</U></HTML>");
+			}
+			public void mouseExited(MouseEvent e) {
+				privacy.setText("Privacy");
+			}
+		});
+		privacy.setFocusPainted(false);
+		privacy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openWebPage("https://sites.google.com/view/tictactoeproject/privacy-policy?authuser=0");
+			}
+		});
+		privacy.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
+		privacy.setContentAreaFilled(false);
+		privacy.setBorderPainted(false);
+		privacy.setBounds(890, 596, 83, 23);
+		frame.getContentPane().add(privacy);
+		
+		// terms of service button -----------------------------------------------------------------------------------------------------------------
+		terms = new JButton("Terms");
+		terms.setHorizontalAlignment(SwingConstants.LEADING);
+		terms.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				terms.setText("<HTML><U>Terms</U></HTML>");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				terms.setText("Terms");
+			}
+		});
+		terms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		terms.setFocusPainted(false);
+		terms.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openWebPage("https://sites.google.com/view/tictactoeproject/terms?authuser=0");
+			}
+		});
+		terms.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
+		terms.setContentAreaFilled(false);
+		terms.setBorderPainted(false);
+		terms.setBounds(946, 596, 77, 23);
+		frame.getContentPane().add(terms);
+		
+		// about us button ---------------------------------------------------------------------------------------------------------------------------------
+		aboutus = new JButton("About Us");
+		aboutus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openWebPage("https://sites.google.com/view/tictactoeproject/home");
+			}
+		});
+		aboutus.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				aboutus.setText("<HTML><U>About Us</U></HTML>");
+			}
+			public void mouseExited(MouseEvent e) {
+				aboutus.setText("About Us");
+			}
+		});
+		aboutus.setHorizontalAlignment(SwingConstants.LEADING);
+		aboutus.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
+		aboutus.setFocusPainted(false);
+		aboutus.setContentAreaFilled(false);
+		aboutus.setBorderPainted(false);
+		aboutus.setBounds(996, 596, 90, 23);
+		frame.getContentPane().add(aboutus);
 		
 		// play button --------------------------------------------------------------------------------------------------------------------------
 		JButton playbtn = new JButton("");
