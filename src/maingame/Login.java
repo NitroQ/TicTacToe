@@ -94,11 +94,17 @@ public class Login {
 	//finds the email if it exist in the database --------------------------------
 	private boolean FindEmail(String eemail) {
 		boolean a = false;
+		String c = "";
+		if(!id1.equals(null)) {
+			c += id1.getemail();
+		}
+		
 		for (int i = 0; i < 2; i++) {
-		    if(email.get(i).contains(eemail) || id1.getemail().equals(eemail)) 
+		    if(email.get(i).contains(eemail) || c.equals(eemail)) {
 		    	a = true;
 		    
 		    }
+		}
 		return a;
 	}
 	//gets the index of the email in the database ---------------------------------
