@@ -102,7 +102,7 @@ public class Welcomepage {
 		});
 		playbtn.setBorderPainted(false);
 		playbtn.setContentAreaFilled(false);
-		playbtn.setBounds(573, 112, 407, 402);
+		playbtn.setBounds(589, 240, 407, 402);
 		frame.getContentPane().add(playbtn);
 		
 		// Code Vision Studios logo -------------------------------------------------------------------------------------------------------------
@@ -224,7 +224,7 @@ public class Welcomepage {
 		
 		// background image --------------------------------------------------------------------------------------------------------------------
 		JLabel background = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/welcomeback.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/aaaa.png")).getImage();
 		background.setIcon(new ImageIcon(img));
 		background.setBounds(0, 0, 1096, 630);
 		frame.getContentPane().add(background);	
