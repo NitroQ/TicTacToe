@@ -89,7 +89,25 @@ public class Login {
 		    }
 		return b;
 	}
-	
+	private boolean FindEmail(String eemail) {
+		boolean a = false;
+		for (int i = 0; i < 2; i++) {
+		    if(email.get(i).contains(eemail)) 
+		    	a = true;
+		    
+		    }
+		return a;
+	}
+	private int FindUserEmail(String usermail) {
+		int mailIndex = 0;
+		for (int i = 0; i < 2; i++) {
+		    if(email.get(i).contains(usermail)) 
+		    	mailIndex += i;
+		    
+		    }
+		return mailIndex;
+	}
+		
 	private boolean checkFields(){
 		/* 
 		 * Checks all Fields if its empty and matches required format ------------------------------------
@@ -137,7 +155,7 @@ public class Login {
 		  String to= email;
 		  
 		  Random r = new Random();
-	      String rand = String.valueOf(r.nextInt((2 - 0) + 1) + 0);
+	      String rand = String.valueOf(r.nextInt((50000 - 10000) + 1) + 0);
 	      
 		   //Get the session object  
 		   Properties props = new Properties();  
@@ -342,7 +360,7 @@ public class Login {
 			public void focusLost(FocusEvent e) {
 				if (String.valueOf(txtPassword.getPassword()).trim().equals("") || 
 						String.valueOf(txtPassword.getPassword()).trim().toLowerCase().equals("password")) {
-					txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 22));
+					txtPassword.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
 					txtPassword.setText("Password");
 				passwordlbl.setVisible(false);
 				txtPassword.setEchoChar((char)0); 
@@ -363,14 +381,23 @@ public class Login {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				lblNewLabel.setForeground(new Color(208, 49, 45));
-		        String m = JOptionPane.showInputDialog("Input Account Email: ");
-		        String c = forgotPass(m);
-		        String d = JOptionPane.showInputDialog("Input Code: ");
-		        
-		        if(c.equals(d)) {
-		        	Game tictac = new Game();
-					tictac.frame.setVisible(true);
-					frame.dispose();
+		        String mail = JOptionPane.showInputDialog("Input Account Email: ");
+		        if (FindEmail(mail)) {
+		        String verification = forgotPass(mail);
+		        String code = JOptionPane.showInputDialog("Input Code: ");
+		        	if(verification.equals(code)) {
+		        		int mailInt = FindUserEmail(mail);
+		        		String newpass = JOptionPane.showInputDialog("New Password: ");
+		        		String repnewpass = JOptionPane.showInputDialog("Repeat Password: ");
+		        			if(newpass.equals(repnewpass)) {
+		        				pass.set(mailInt, newpass);
+		        			}else {
+		        				JOptionPane.showMessageDialog(null, "Password Did Not Match, Try Again", "Failed", 2);
+		        			}
+		        		
+		        	}
+		        }else {
+		        	 JOptionPane.showMessageDialog(null, "You are not yet signed up in this email.","User not Found",2);
 		        }
 			}
 		});
@@ -385,11 +412,6 @@ public class Login {
 		background.setIcon(new ImageIcon(img));
 		background.setBounds(0, 0, 800, 484);
 		frame.getContentPane().add(background);
-		
-		
-		
-		
-		
 		
 		
 		
