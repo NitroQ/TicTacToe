@@ -373,7 +373,7 @@ public class Game {
 		frame.getContentPane().add(logoutbtn);
 		
 		lblNewLabel = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/back game.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/backgame2.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 1096, 630);
 		frame.getContentPane().add(lblNewLabel);
