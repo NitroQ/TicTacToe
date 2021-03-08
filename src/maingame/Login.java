@@ -41,6 +41,9 @@ public class Login {
 	public JFrame frame;
 	private JTextField txtUsername;
 	private JPasswordField txtPassword;
+	private JButton privacy;
+	private JButton terms;
+	private JButton aboutus;
 	private JLabel uservalidation;
 	private JLabel passvalidation;
 	
@@ -462,6 +465,77 @@ public class Login {
 		lblNewLabel.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
 		frame.getContentPane().add(lblNewLabel);
 		
+		// privacy button -----------------------------------------------------------------------------------------------------------------------
+		privacy = new JButton("Privacy");
+		privacy.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				privacy.setText("<HTML><U>Privacy</U></HTML>");
+			}
+			public void mouseExited(MouseEvent e) {
+				privacy.setText("Privacy");
+			}
+		});
+		privacy.setFocusPainted(false);
+		privacy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openWebPage("https://sites.google.com/view/tictactoeproject/privacy-policy?authuser=0");
+			}
+		});
+		privacy.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
+		privacy.setContentAreaFilled(false);
+		privacy.setBorderPainted(false);
+		privacy.setBounds(567, 450, 83, 23);
+		frame.getContentPane().add(privacy);
+		
+		// terms of service button -----------------------------------------------------------------------------------------------------------------
+		terms = new JButton("Terms");
+		terms.setHorizontalAlignment(SwingConstants.LEADING);
+		terms.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				terms.setText("<HTML><U>Terms</U></HTML>");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				terms.setText("Terms");
+			}
+		});
+		terms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		terms.setFocusPainted(false);
+		terms.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openWebPage("https://sites.google.com/view/tictactoeproject/terms?authuser=0");
+			}
+		});
+		terms.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
+		terms.setContentAreaFilled(false);
+		terms.setBorderPainted(false);
+		terms.setBounds(635, 450, 77, 23);
+		frame.getContentPane().add(terms);
+		
+		// about us button ---------------------------------------------------------------------------------------------------------------------------------
+		aboutus = new JButton("About Us");
+		aboutus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openWebPage("https://sites.google.com/view/tictactoeproject/home");
+			}
+		});
+		aboutus.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				aboutus.setText("<HTML><U>About Us</U></HTML>");
+			}
+			public void mouseExited(MouseEvent e) {
+				aboutus.setText("About Us");
+			}
+		});
+		aboutus.setHorizontalAlignment(SwingConstants.LEADING);
+		aboutus.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
+		aboutus.setFocusPainted(false);
+		aboutus.setContentAreaFilled(false);
+		aboutus.setBorderPainted(false);
+		aboutus.setBounds(700, 450, 90, 23);
+		frame.getContentPane().add(aboutus);
+		
 		uservalidation = new JLabel("is required. *");
 		uservalidation.setForeground(Color.ORANGE);
 		uservalidation.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -483,6 +557,15 @@ public class Login {
 		background.setBounds(0, 0, 800, 484);
 		frame.getContentPane().add(background);
 		
+	}
+
+	public void openWebPage(String url){
+	   try {         
+	     java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+	   }
+	   catch (java.io.IOException e) {
+	       System.out.println(e.getMessage());
+	   }
 	}
 
 	public void setVisible(boolean b) {
