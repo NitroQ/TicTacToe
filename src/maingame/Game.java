@@ -218,16 +218,21 @@ public class Game {
 		mode.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 17));
 		mode.setContentAreaFilled(false);
 		
+		// VS. PLAYER menu item ------------------------------------------------------------------------------------------------------------------------
 		twoplayer = new JMenuItem("VS. HUMAN");
 		twoplayer.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+		
+		// VS. COMPUTER menu item ----------------------------------------------------------------------------------------------------------------------
 		AI = new JMenuItem("VS. COMPUTER");
 		AI.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 		
+		// Code Vision Studios logo --------------------------------------------------------------------------------------------------------------------
 		logomenu = new JLabel("");
 		Image menulogo = new ImageIcon(this.getClass().getResource("/golo.png")).getImage();
 		logomenu.setIcon(new ImageIcon(menulogo));
 		menuBar.add(logomenu);
 		
+		// adding menu items to their respective menus and menus to the menubar
 		file.add(newGame);
 		file.add(quit);
 		menuBar.add(file);
@@ -239,17 +244,17 @@ public class Game {
 		menuBar.add(mode);
 		frame.getContentPane().add(menuBar);
 		
+		// help -------------------------------------------------------------------------------------------------------------------------------------
 		helpbutton = new JButton("HELP");
 		helpbutton.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseEntered(MouseEvent e) {
 				helpbutton.setForeground(new Color(255, 181, 0));
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				helpbutton.setForeground(Color.WHITE);
 			}
 		});
+		// JOptionPane that shows the mechanics --------------------------------------------------------------------------------------------------
 		helpbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String html = "<html><body width = '%1s'><h1>RULES FOR TIC-TAC-TOE</h>"
@@ -273,13 +278,12 @@ public class Game {
 		helpbutton.setBorderPainted(false);
 		menuBar.add(helpbutton);
 		
+		// privacy button -----------------------------------------------------------------------------------------------------------------------
 		privacy = new JButton("Privacy");
 		privacy.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseEntered(MouseEvent e) {
 				privacy.setText("<HTML><U>Privacy</U></HTML>");
 			}
-			@Override
 			public void mouseExited(MouseEvent e) {
 				privacy.setText("Privacy");
 			}
@@ -296,6 +300,7 @@ public class Game {
 		privacy.setBounds(0, 596, 83, 23);
 		frame.getContentPane().add(privacy);
 		
+		// terms of service button -----------------------------------------------------------------------------------------------------------------
 		terms = new JButton("Terms");
 		terms.setHorizontalAlignment(SwingConstants.LEADING);
 		terms.addMouseListener(new MouseAdapter() {
@@ -321,6 +326,7 @@ public class Game {
 		terms.setBounds(70, 596, 77, 23);
 		frame.getContentPane().add(terms);
 		
+		// new game label ------------------------------------------------------------------------------------------------------------------------
 		newGamelbl = new JLabel("NEW GAME");
 		newGamelbl.addMouseListener(new MouseAdapter() {
 			@Override
@@ -332,6 +338,7 @@ public class Game {
 		newGamelbl.setBounds(197, 79, 100, 23);
 		frame.getContentPane().add(newGamelbl);
 		
+		// new game button ("O") -----------------------------------------------------------------------------------------------------------------
 		newGamebtn = new JButton("O");
 		newGamebtn.setFocusPainted(false);
 		newGamebtn.addActionListener(new ActionListener() {
@@ -346,6 +353,7 @@ public class Game {
 		newGamebtn.setBounds(133, 61, 77, 69);
 		frame.getContentPane().add(newGamebtn);
 		
+		// logout label ---------------------------------------------------------------------------------------------------------------------------
 		JLabel logoutlbl = new JLabel("LOG OUT");
 		logoutlbl.addMouseListener(new MouseAdapter() {
 			@Override
@@ -363,6 +371,7 @@ public class Game {
 		logoutlbl.setBounds(52, 79, 90, 23);
 		frame.getContentPane().add(logoutlbl);
 		
+		// logout button ("X") -----------------------------------------------------------------------------------------------------------------
 		JButton logoutbtn = new JButton("X");
 		logoutbtn.setFocusPainted(false);
 		logoutbtn.addActionListener(new ActionListener() {
@@ -383,6 +392,7 @@ public class Game {
 		logoutbtn.setBounds(0, 61, 67, 69);
 		frame.getContentPane().add(logoutbtn);
 		
+		// background image ---------------------------------------------------------------------------------------------------------------------
 		lblNewLabel = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/backgame2.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
@@ -391,6 +401,7 @@ public class Game {
 		
 	}
 	
+	// connects to browser ----------------------------------------------------------------------------------------------------------------------
 	public void openWebPage(String url){
 		   try {         
 		     java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
@@ -400,6 +411,7 @@ public class Game {
 		   }
 	}
 	
+	// clears the board ---------------------------------------------------------------------------------------------------------------------------
 	private void resetBoard() {
 		currentPlayer = "X";
 		hasWinner = false;
@@ -410,6 +422,7 @@ public class Game {
 		}
 	}
 	
+	// initializes the board -----------------------------------------------------------------------------------------------------------------
 	private void initializeBoard() {
 		for (int i = 0; i < 3; i++) { 
 			for (int j = 0; j < 3; j++) { 
@@ -448,6 +461,7 @@ public class Game {
 		}
 	}
 	
+	// toggles player/ switches players -----------------------------------------------------------------------------------------------------------------
 	private void togglePlayer() {
 		if (currentPlayer.equals("X"))
 			currentPlayer = "O";
@@ -455,6 +469,7 @@ public class Game {
 			currentPlayer = "X";
 	}
 	
+	// checks if any of the conditions are true to declare a winner ----------------------------------------------------------------------------------------
 	private void hasWinner() {
 		JLabel text = new JLabel("Congratulations!", JLabel.CENTER);
 		JLabel text2 = new JLabel("PLAYER " + currentPlayer + " WON!", JLabel.CENTER);

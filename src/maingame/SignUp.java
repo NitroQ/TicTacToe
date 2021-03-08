@@ -46,6 +46,11 @@ public class SignUp {
 	private JLabel PasswordLbl;
 	private JLabel RepPasswordlbl;
 	private JCheckBox Agreechkbox;
+	private JLabel playervalidation;
+	private JLabel uservalidation;
+	private JLabel emailvalidation;
+	private JLabel passwordvalidation;
+	private JLabel reppassvalidation;
 	
 
 	public static void main(String[] args) {
@@ -114,29 +119,24 @@ public class SignUp {
 			 JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty", "Empty Fields", 2);
 	            return false;
 		}
-		else if (sName.trim().equals("Player Name")) {
-			pName.setForeground(new Color(208, 49, 45));
-			JOptionPane.showMessageDialog(null, "Player Name field cannot be empty.", "Player Name Field", 2);
+		if (sName.trim().equals("Player Name")) {
+			playervalidation.setVisible(true);
 		}
-		else if (uName.trim().equals("Username")) {
-			userName.setForeground(new Color(208, 49, 45));
-			JOptionPane.showMessageDialog(null, "Username field cannot be empty.", "Username Field", 2);
+		if (uName.trim().equals("Username")) {
+			uservalidation.setVisible(true);
 		}
-		else if (mail.trim().equals("Email")) {
-			mailE.setForeground(new Color(208, 49, 45));
-			JOptionPane.showMessageDialog(null, "Email field cannot be empty.", "Email Field", 2);
+		if (mail.trim().equals("Email")) {
+			emailvalidation.setVisible(true);
+		}
+		if (pass1.trim().equals("Password")) {
+			passwordvalidation.setVisible(true);
+		}
+		if (pass2.trim().equals("Repeat Password")) {
+			reppassvalidation.setVisible(true);
 		}
 		else if (!matcher.matches()) {
-			mailE.setForeground(new Color(208, 49, 45));
-			JOptionPane.showMessageDialog(null, "Invalid email", "Email Field", 2);
-		}
-		else if (pass1.trim().equals("Password")) {
-			PasswordLbl.setForeground(new Color(208, 49, 45));
-			JOptionPane.showMessageDialog(null, "Password field cannot be empty.", "Password Field", 2);
-		}
-		else if (pass2.trim().equals("Repeat Password")) {
-			RepPasswordlbl.setForeground(new Color(208, 49, 45));
-			JOptionPane.showMessageDialog(null, "Repeat Password field cannot be empty.", "Repeat Password Field", 2);
+			emailvalidation.setVisible(true);
+//			mailE.setForeground(new )
 		}
 		else if (!pass1.equals(pass2)) {
 			JOptionPane.showMessageDialog(null, "Password Doesn't Match", "Confirm Password", 2); 
@@ -476,6 +476,46 @@ public class SignUp {
 				Agreechkbox.setBounds(471, 596, 21, 23);
 				frame.getContentPane().add(Agreechkbox);
 	
+		playervalidation = new JLabel("is required. *");
+		playervalidation.setFont(new Font("Century Gothic", Font.BOLD, 12));
+		playervalidation.setHorizontalAlignment(SwingConstants.RIGHT);
+		playervalidation.setForeground(new Color(214, 237, 23));
+		playervalidation.setBounds(631, 161, 188, 14);
+		playervalidation.setVisible(false);
+		frame.getContentPane().add(playervalidation);	
+		
+		uservalidation = new JLabel("is required. *");
+		uservalidation.setHorizontalAlignment(SwingConstants.RIGHT);
+		uservalidation.setForeground(Color.ORANGE);
+		uservalidation.setBackground(Color.WHITE);
+		uservalidation.setBounds(631, 251, 188, 14);
+		uservalidation.setVisible(false);
+		frame.getContentPane().add(uservalidation);
+		
+		emailvalidation = new JLabel("is required. *");
+		emailvalidation.setHorizontalAlignment(SwingConstants.RIGHT);
+		emailvalidation.setForeground(Color.ORANGE);
+		emailvalidation.setBackground(Color.WHITE);
+		emailvalidation.setBounds(631, 336, 188, 14);
+		emailvalidation.setVisible(false);
+		frame.getContentPane().add(emailvalidation);
+		
+		passwordvalidation = new JLabel("is required. *");
+		passwordvalidation.setHorizontalAlignment(SwingConstants.RIGHT);
+		passwordvalidation.setForeground(Color.ORANGE);
+		passwordvalidation.setBackground(Color.WHITE);
+		passwordvalidation.setBounds(631, 420, 188, 14);
+		passwordvalidation.setVisible(false);
+		frame.getContentPane().add(passwordvalidation);
+		
+		reppassvalidation = new JLabel("is required. *");
+		reppassvalidation.setHorizontalAlignment(SwingConstants.RIGHT);
+		reppassvalidation.setForeground(Color.ORANGE);
+		reppassvalidation.setBackground(Color.WHITE);
+		reppassvalidation.setBounds(631, 508, 188, 14);
+		reppassvalidation.setVisible(false);
+		frame.getContentPane().add(reppassvalidation);
+		
 		// Jlabel Background ----------------------------------------------------
 		JLabel Background = new JLabel("");
 		Background.setHorizontalTextPosition(SwingConstants.RIGHT);
