@@ -422,13 +422,13 @@ public class Game {
 		
 		lblNewLabel_2 = new JLabel("Welcome,");
 		lblNewLabel_2.setFont(new Font("Luckiest Guy", Font.PLAIN, 25));
-		lblNewLabel_2.setForeground(new Color(255, 181, 0));
+		lblNewLabel_2.setForeground(Color.BLACK);
 		lblNewLabel_2.setBounds(25, 228, 120, 50);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		lblNewLabel_3 = new JLabel(id1.getFname());
 		lblNewLabel_3.setFont(new Font("Luckiest Guy", Font.PLAIN, 25));
-		lblNewLabel_3.setForeground(new Color(255, 181, 0));
+		lblNewLabel_3.setForeground(Color.BLACK);
 		lblNewLabel_3.setBounds(25, 260, 262, 50);
 		frame.getContentPane().add(lblNewLabel_3);
 		

@@ -77,18 +77,22 @@ public class Login {
 		pass = new ArrayList<String>();
 		name = new ArrayList<String>();
 		email = new ArrayList<String>();
+		
+		
+		
 		//adding existing users --------------------------------------------------------
+		user.add("qqqqq"); pass.add("qqqqq"); name.add("qqqqq"); email.add("qqqqq@gmail.com");
 		user.add("Frank"); pass.add("frank"); name.add("Frank Vincent"); email.add("frankgesmundo10@gmail.com");
 		user.add("Gabby"); pass.add("gab123"); name.add("Gabrille"); email.add("gabbydavid408@gmail.com");
 		if(!id1.equals(null)) {
-		user.add(id1.getUname()); pass.add(id1.getpass1()); name.add(id1.getFname()); email.add(id1.getemail());
+			user.add(id1.getUname()); pass.add(id1.getpass1()); name.add(id1.getFname()); email.add(id1.getemail());
 		}
 		
 	}
 	//Finds the username Index (used for login) -----------------------------------
 	private int UserFind(String name) {
 		int b = 0;
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 3; i++) {
 		    if(user.get(i).contains(name)) 
 		    	b += i;
 		    }
@@ -101,7 +105,7 @@ public class Login {
 		if(!id1.equals(null)) {
 			c += id1.getemail();
 		}
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 3; i++) {
 		    if(email.get(i).contains(eemail) || c.equals(eemail)) {
 		    	a = true;
 		    
@@ -118,9 +122,9 @@ public class Login {
 		
 		int mailIndex = 0;
 		if(credmail.equals(usermail) && !credmail.equals("")) {
-			mailIndex = 2;
+			mailIndex = 3;
 		}else{
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 3; i++) {
 		    if(email.get(i).contains(usermail)) 
 		    	mailIndex = i;
 	  
@@ -167,17 +171,36 @@ public class Login {
 			int userD = UserFind(uName);
 			String usName = user.get(userD);
 			String opass = pass.get(userD);
-		
 		//comparing data to existing database -----------------------
-		if(!pass1.equals(opass) || !uName.equals(usName)) {
+		if(opass.equals("qqqqq") || usName.equals("qqqqq")) {
+			return false;
+		}else if(!pass1.equals(opass) || !uName.equals(usName)) {
 			JOptionPane.showMessageDialog(null, "Username/Password Doesn't Match","Check Username/Password",2); 
 			//return value
-			 return false;
+			 return false;		
 		}else {
 			id1.setFname(name.get(userD));
 			//return value
 			return true;
 		}
+	}
+	private boolean checkLogincred() {
+			//Checks textfields for data ---------------------------------
+			String uName = txtUsername.getText();
+			String pass1 = String.valueOf(txtPassword.getPassword());
+			//getting the data -------------------------------------------
+				String usName = id1.getUname();
+				String opass = id1.getpass1();
+
+			//comparing data to existing database -----------------------
+			if(!pass1.equals(opass) || !uName.equals(usName)) {
+				JOptionPane.showMessageDialog(null, "Username/Password Doesn't Match","Check Username/Password",2); 
+				//return value
+				 return false;		
+			}else {
+				//return value
+				return true;
+			}
 	
 	}
 	private String forgotPass(String email) {
@@ -388,7 +411,7 @@ public class Login {
 				// checks if text fields are populated -----------------------
 				if(checkFields()) {
 					//checks if the user is in the database ------------------
-					if(checkLogin()) {
+					if(checkLogin() || checkLogincred()) {
 					Game tictac = new Game(id1);
 					tictac.frame.setVisible(true);
 					frame.dispose();
@@ -409,7 +432,7 @@ public class Login {
 				// checks if text fields are populated -----------------------
 				if(checkFields()) {
 					//checks if the user is in the database ------------------
-					if(checkLogin()) {
+					if(checkLogin() || checkLogincred()) {
 					Game tictac = new Game(id1);
 					tictac.frame.setVisible(true);
 					frame.dispose();
