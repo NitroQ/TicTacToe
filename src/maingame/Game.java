@@ -448,18 +448,6 @@ public class Game {
 		}
 	}
 	
-	private void Draw() {
-		for (int k = 0; k < 1; k++) {
-		for (int i = 0; i < 3; i++) { 
-			for (int j = 0; j < 3; j++) { 
-				if (!board[i][j].getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "It's a tie!");
-				}
-			}
-		}
-	}
-	}
-	
 	private void togglePlayer() {
 		if (currentPlayer.equals("X"))
 			currentPlayer = "O";

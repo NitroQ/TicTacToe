@@ -41,7 +41,7 @@ public class SignUp {
 	private JTextField txtEmail;
 	private JLabel Loginbtn;
 	private JLabel pName;
-	private JLabel uName;
+	private JLabel userName;
 	private JLabel mailE;
 	private JLabel PasswordLbl;
 	private JLabel RepPasswordlbl;
@@ -114,8 +114,29 @@ public class SignUp {
 			 JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty", "Empty Fields", 2);
 	            return false;
 		}
+		else if (sName.trim().equals("Player Name")) {
+			pName.setForeground(new Color(208, 49, 45));
+			JOptionPane.showMessageDialog(null, "Player Name field cannot be empty.", "Player Name Field", 2);
+		}
+		else if (uName.trim().equals("Username")) {
+			userName.setForeground(new Color(208, 49, 45));
+			JOptionPane.showMessageDialog(null, "Username field cannot be empty.", "Username Field", 2);
+		}
+		else if (mail.trim().equals("Email")) {
+			mailE.setForeground(new Color(208, 49, 45));
+			JOptionPane.showMessageDialog(null, "Email field cannot be empty.", "Email Field", 2);
+		}
 		else if (!matcher.matches()) {
 			mailE.setForeground(new Color(208, 49, 45));
+			JOptionPane.showMessageDialog(null, "Invalid email", "Email Field", 2);
+		}
+		else if (pass1.trim().equals("Password")) {
+			PasswordLbl.setForeground(new Color(208, 49, 45));
+			JOptionPane.showMessageDialog(null, "Password field cannot be empty.", "Password Field", 2);
+		}
+		else if (pass2.trim().equals("Repeat Password")) {
+			RepPasswordlbl.setForeground(new Color(208, 49, 45));
+			JOptionPane.showMessageDialog(null, "Repeat Password field cannot be empty.", "Repeat Password Field", 2);
 		}
 		else if (!pass1.equals(pass2)) {
 			JOptionPane.showMessageDialog(null, "Password Doesn't Match", "Confirm Password", 2); 
@@ -221,12 +242,12 @@ public class SignUp {
 		txtname.setColumns(10);
 		
 		//Username label and Text Field ---------------------------------------
-		uName = new JLabel("Username");
-		uName.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
-		uName.setForeground(new Color(255, 181, 0));
-		uName.setVisible(false);
-		uName.setBounds(450, 243, 126, 28);
-		frame.getContentPane().add(uName);
+		userName = new JLabel("Username");
+		userName.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
+		userName.setForeground(new Color(255, 181, 0));
+		userName.setVisible(false);
+		userName.setBounds(450, 243, 126, 28);
+		frame.getContentPane().add(userName);
 		
 		txtUsername = new JTextField();
 		txtUsername.addFocusListener(new FocusAdapter() {
@@ -237,14 +258,14 @@ public class SignUp {
 				txtUsername.setText("");
 				
 				}
-				uName.setVisible(true);
+				userName.setVisible(true);
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtUsername.getText().trim().equals("") || 
 						txtUsername.getText().trim().toLowerCase().equals("username")) {
 				txtUsername.setText("Username");
-				uName.setVisible(false);
+				userName.setVisible(false);
 				}
 			}
 		});
@@ -302,7 +323,6 @@ public class SignUp {
 			textPass = new JPasswordField("Password");
 			textPass.setEchoChar((char)0);
 			textPass.addFocusListener(new FocusAdapter() {
-				@Override
 				public void focusGained(FocusEvent e) {
 					if (String.valueOf(textPass.getPassword()).trim().equals("") || 
 							String.valueOf(textPass.getPassword()).trim().toLowerCase().equals("password")) {
@@ -310,10 +330,7 @@ public class SignUp {
 					}
 					PasswordLbl.setVisible(true);
 					textPass.setEchoChar((char)0);
-					
 				}
-				
-				@Override
 				public void focusLost(FocusEvent e) {
 					if (String.valueOf(textPass.getPassword()).trim().equals("") || 
 							String.valueOf(textPass.getPassword()).trim().toLowerCase().equals("password")) {
@@ -324,7 +341,6 @@ public class SignUp {
 							!String.valueOf(textPass.getPassword()).trim().toLowerCase().equals("password")){
 						textPass.setEchoChar('*'); 
 					}
-					
 				}
 			});
 			textPass.setFont(new Font("Luckiest Guy", Font.PLAIN, 22));
