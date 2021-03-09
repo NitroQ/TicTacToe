@@ -502,7 +502,7 @@ public class Login {
 		        if (FindEmail(mail)) {
 		        //Sends code via user's email ---------------------------------
 		        String verification = forgotPass(mail);
-		        String code = JOptionPane.showInputDialog("Input Code: ");
+		        String code = JOptionPane.showInputDialog("Email Sent, Input Code: ");
 		        	//checks if code matches with user input ------------------
 		        	if(verification.equals(code)) {
 		        		//finds the index of the email and change its password
@@ -541,6 +541,7 @@ public class Login {
 				lblNewLabel_1.setForeground(new Color(208, 49, 45));
 			   String mail = JOptionPane.showInputDialog("Input Account Email: ");
 			   if (FindEmail(mail)) {
+				   JOptionPane.showMessageDialog(null, "Email Has been Sent!","Verification",2);
 				   	forgotUser(mail);
 			   }else {
 		        	//print if the email does not exist in the database ------------------------------------
