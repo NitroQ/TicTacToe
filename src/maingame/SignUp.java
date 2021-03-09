@@ -593,7 +593,7 @@ public class SignUp {
 		});
 		haveaccount.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
 		haveaccount.setForeground(new Color(255, 181, 0));
-		haveaccount.setBounds(460, 705, 212, 28);
+		haveaccount.setBounds(456, 727, 212, 28);
 		frame.getContentPane().add(haveaccount);
 		
 		// Jlabel Background ----------------------------------------------------
