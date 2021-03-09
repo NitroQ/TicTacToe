@@ -415,6 +415,7 @@ public class SignUp {
 		
 		//Signup Label/Button ---------------------------------------------------
 		JLabel SignupLbl = new JLabel("Sign Up");
+		SignupLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		SignupLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -482,6 +483,7 @@ public class SignUp {
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel = new JLabel("<HTML><U>Terms of Service</U></HTML>");
+		lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -495,6 +497,7 @@ public class SignUp {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("<HTML><U>Privacy Policy</U></HTML>");
+		lblNewLabel_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

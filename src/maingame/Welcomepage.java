@@ -135,6 +135,7 @@ public class Welcomepage {
 		
 		// play button --------------------------------------------------------------------------------------------------------------------------
 		JButton playbtn = new JButton("");
+		playbtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		Image buttonplay = new ImageIcon(this.getClass().getResource("/playborderyellow.png")).getImage();
 		playbtn.setIcon(new ImageIcon(buttonplay));
 		playbtn.addMouseListener(new MouseAdapter() {

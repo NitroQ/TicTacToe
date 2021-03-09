@@ -320,6 +320,7 @@ public class Login {
 		
 		//Exit Button---------------------------------------------------------------
 		JButton Close = new JButton("X");
+		Close.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		Close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int exitconfirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "", JOptionPane.YES_NO_OPTION);
@@ -351,6 +352,7 @@ public class Login {
 		
 		// Signup Tab ------------------------------------------------------------------
 		JLabel signuplbl = new JLabel("SignUp");
+		signuplbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		signuplbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -403,6 +405,7 @@ public class Login {
 		
 		// Login Label/ Button -----------------------------------------------
 		JLabel Loginlbl = new JLabel("Login");
+		Loginlbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		Loginlbl.setFont(new Font("Luckiest Guy", Font.PLAIN, 19));
 		Loginlbl.setForeground(new Color(255, 181, 0));
 		Loginlbl.addMouseListener(new MouseAdapter() {
@@ -531,6 +534,7 @@ public class Login {
 	
 		//Forgot Username -----------------------------------------------------------------------
 		JLabel lblNewLabel_1 = new JLabel("Forgot Username?");
+		lblNewLabel_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -558,6 +562,7 @@ public class Login {
 		
 		// privacy button -----------------------------------------------------------------------------------------------------------------------
 		privacy = new JButton("Privacy");
+		privacy.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		privacy.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				privacy.setText("<HTML><U>Privacy</U></HTML>");
@@ -606,6 +611,7 @@ public class Login {
 		
 		// about us button ---------------------------------------------------------------------------------------------------------------------------------
 		aboutus = new JButton("About Us");
+		aboutus.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		aboutus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				openWebPage("https://sites.google.com/view/tictactoeproject/home");
@@ -644,6 +650,7 @@ public class Login {
 		
 		//Dont have an account yet -------------------------------------------------------------
 		JLabel donthave = new JLabel("Don't have an account yet?");
+		donthave.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		donthave.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				donthave.setForeground(new Color(208, 49, 45));

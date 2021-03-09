@@ -287,6 +287,7 @@ public class Game {
 		
 		// privacy button -----------------------------------------------------------------------------------------------------------------------
 		privacy = new JButton("Privacy");
+		privacy.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		privacy.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				privacy.setText("<HTML><U>Privacy</U></HTML>");
@@ -335,6 +336,7 @@ public class Game {
 		
 		// about us button ---------------------------------------------------------------------------------------------------------------------------------
 		aboutus = new JButton("About Us");
+		aboutus.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		aboutus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				openWebPage("https://sites.google.com/view/tictactoeproject/home");
@@ -358,6 +360,7 @@ public class Game {
 		
 		// new game label ------------------------------------------------------------------------------------------------------------------------
 		newGamelbl = new JLabel("NEW GAME");
+		newGamelbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		newGamelbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -370,6 +373,7 @@ public class Game {
 		
 		// new game button ("O") -----------------------------------------------------------------------------------------------------------------
 		newGamebtn = new JButton("O");
+		newGamebtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		newGamebtn.setFocusPainted(false);
 		newGamebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -385,6 +389,7 @@ public class Game {
 		
 		// logout label ---------------------------------------------------------------------------------------------------------------------------
 		JLabel logoutlbl = new JLabel("LOG OUT");
+		logoutlbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		logoutlbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -403,6 +408,7 @@ public class Game {
 		
 		// logout button ("X") -----------------------------------------------------------------------------------------------------------------
 		JButton logoutbtn = new JButton("X");
+		logoutbtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		logoutbtn.setFocusPainted(false);
 		logoutbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
