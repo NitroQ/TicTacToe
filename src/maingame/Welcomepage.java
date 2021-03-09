@@ -159,7 +159,7 @@ public class Welcomepage {
 		});
 		playbtn.setBorderPainted(false);
 		playbtn.setContentAreaFilled(false);
-		playbtn.setBounds(580, 241, 407, 402);
+		playbtn.setBounds(578, 240, 407, 402);
 		frame.getContentPane().add(playbtn);
 		
 		// Code Vision Studios logo -------------------------------------------------------------------------------------------------------------
