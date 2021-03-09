@@ -415,6 +415,7 @@ public class SignUp {
 		
 		//Signup Label/Button ---------------------------------------------------
 		JLabel SignupLbl = new JLabel("Sign Up");
+		SignupLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		SignupLbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -482,6 +483,7 @@ public class SignUp {
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel = new JLabel("<HTML><U>Terms of Service</U></HTML>");
+		lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -495,6 +497,7 @@ public class SignUp {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("<HTML><U>Privacy Policy</U></HTML>");
+		lblNewLabel_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -590,7 +593,7 @@ public class SignUp {
 		});
 		haveaccount.setFont(new Font("Luckiest Guy", Font.PLAIN, 15));
 		haveaccount.setForeground(new Color(255, 181, 0));
-		haveaccount.setBounds(460, 705, 212, 28);
+		haveaccount.setBounds(456, 727, 212, 28);
 		frame.getContentPane().add(haveaccount);
 		
 		// Jlabel Background ----------------------------------------------------

@@ -15,9 +15,9 @@ public class Game {
 	private JButton[][] board;
 	private boolean hasWinner;
 	private JMenuBar menuBar;
-	private JMenu file, diff, mode, help;
+	private JMenu file, diff, mode;
 	private JMenuItem newGame, quit;
-	private JMenuItem sizethree, sizefour, sizefive, sizesix;
+	private JMenuItem sizethree, sizefour;
 	private JMenuItem twoplayer, AI;
 	private String currentPlayer;
 	private JLabel lblNewLabel;
@@ -28,6 +28,8 @@ public class Game {
 	private JLabel logomenu;
 	private JButton newGamebtn;
 	private JLabel newGamelbl;
+	private JLabel logoutlbl;
+	private JButton logoutbtn;					     
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
 
@@ -287,6 +289,7 @@ public class Game {
 		
 		// privacy button -----------------------------------------------------------------------------------------------------------------------
 		privacy = new JButton("Privacy");
+		privacy.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		privacy.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				privacy.setText("<HTML><U>Privacy</U></HTML>");
@@ -335,6 +338,7 @@ public class Game {
 		
 		// about us button ---------------------------------------------------------------------------------------------------------------------------------
 		aboutus = new JButton("About Us");
+		aboutus.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		aboutus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				openWebPage("https://sites.google.com/view/tictactoeproject/home");
@@ -358,10 +362,19 @@ public class Game {
 		
 		// new game label ------------------------------------------------------------------------------------------------------------------------
 		newGamelbl = new JLabel("NEW GAME");
+		newGamelbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		newGamelbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				resetBoard();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				newGamelbl.setForeground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				newGamelbl.setForeground(new Color(0, 0, 0));
 			}
 		});
 		newGamelbl.setFont(new Font("Luckiest Guy", Font.PLAIN, 20));
@@ -370,6 +383,7 @@ public class Game {
 		
 		// new game button ("O") -----------------------------------------------------------------------------------------------------------------
 		newGamebtn = new JButton("O");
+		newGamebtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		newGamebtn.setFocusPainted(false);
 		newGamebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -384,7 +398,8 @@ public class Game {
 		frame.getContentPane().add(newGamebtn);
 		
 		// logout label ---------------------------------------------------------------------------------------------------------------------------
-		JLabel logoutlbl = new JLabel("LOG OUT");
+		logoutlbl = new JLabel("LOG OUT");
+		logoutlbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		logoutlbl.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -396,13 +411,22 @@ public class Game {
 					frame.dispose();
 				}
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				logoutlbl.setForeground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				logoutlbl.setForeground(new Color(0, 0, 0));
+			}
 		});
 		logoutlbl.setFont(new Font("Luckiest Guy", Font.PLAIN, 20));
 		logoutlbl.setBounds(55, 548, 90, 23);
 		frame.getContentPane().add(logoutlbl);
 		
 		// logout button ("X") -----------------------------------------------------------------------------------------------------------------
-		JButton logoutbtn = new JButton("X");
+		logoutbtn = new JButton("X");
+		logoutbtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		logoutbtn.setFocusPainted(false);
 		logoutbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

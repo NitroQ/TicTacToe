@@ -135,6 +135,7 @@ public class Welcomepage {
 		
 		// play button --------------------------------------------------------------------------------------------------------------------------
 		JButton playbtn = new JButton("");
+		playbtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		Image buttonplay = new ImageIcon(this.getClass().getResource("/playborderyellow.png")).getImage();
 		playbtn.setIcon(new ImageIcon(buttonplay));
 		playbtn.addMouseListener(new MouseAdapter() {
@@ -158,7 +159,7 @@ public class Welcomepage {
 		});
 		playbtn.setBorderPainted(false);
 		playbtn.setContentAreaFilled(false);
-		playbtn.setBounds(580, 241, 407, 402);
+		playbtn.setBounds(578, 240, 407, 402);
 		frame.getContentPane().add(playbtn);
 		
 		// Code Vision Studios logo -------------------------------------------------------------------------------------------------------------
@@ -241,7 +242,7 @@ public class Welcomepage {
 		});
 		twt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				openWebPage("");
+				openWebPage("https://twitter.com/FrankGesmundo/");
 			}
 		});
 		Image twitter = new ImageIcon(this.getClass().getResource("/twt.png")).getImage();
@@ -266,7 +267,7 @@ public class Welcomepage {
 		});
 		ig.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				openWebPage("");
+				openWebPage("https://www.instagram.com/xdfrankie/");
 			}
 		});
 		Image insta = new ImageIcon(this.getClass().getResource("/ig.png")).getImage();
@@ -291,7 +292,7 @@ public class Welcomepage {
 		});
 		dc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				openWebPage("");
+				openWebPage("https://discord.gg/RKquf3hx");
 			}
 		});
 		Image discord = new ImageIcon(this.getClass().getResource("/dc.png")).getImage();
